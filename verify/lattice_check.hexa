@@ -9,12 +9,10 @@
 //   master   ≡ sigma · phi == n · tau == 24
 //
 // Sister of hexa-sscb/verify/sscb_verify.py — same shape (10/10 PASS sentinel +
-// FALSIFIERS list), but in .hexa per raw#9 hexa-only-orchestration.
 //
 // Run:
 //     hexa run verify/lattice_check.hexa     # exit 0 = all PASS
 //
-// Authority: own 1 (n=6 master identity); raw#9 (hexa-only); raw#10 (honest C3).
 
 let VERSION = "1.0.0"
 

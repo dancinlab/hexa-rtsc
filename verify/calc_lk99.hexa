@@ -330,7 +330,6 @@ fn check_hexatoml_unproven() {
            "")
     _check(_has(toml, "UNPROVEN") || _has(toml, "unproven"),
            "hexa.toml: academic_status = UNPROVEN flag present",
-           "raw#10 honest C3 contractual")
     _check(_has(toml, "unsettled"),
            "hexa.toml: 'unsettled' modifier present",
            "")
@@ -409,7 +408,6 @@ fn main() {
     check_spec_anchors()
     println("")
 
-    println("  hexa.toml UNPROVEN flag (raw#10 honest C3):")
     check_hexatoml_unproven()
 
     println("")

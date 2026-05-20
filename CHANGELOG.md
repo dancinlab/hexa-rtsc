@@ -1138,7 +1138,6 @@ inventory) + §2 (7-step cycle). closure-depth accumulation begin.
   §Install, §Cross-link (3 downstream consumers), §License.
 - MIT License.
 
-### Honest scope (raw#10 C3)
 
 - RT-SC is academically **UNPROVEN** as of 2026-05; LK-99 and subsequent
   candidates have not been independently replicated.

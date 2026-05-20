@@ -92,11 +92,9 @@ Imports flow **T0 → T1 → T2** only. firmware/ is T0 sibling to verify/
 2. **RT-SC empirical-unproven contract**: every public artifact (CLI verb
    output, README badges, status table) MUST surface "UNPROVEN" /
    "sentinel only — does NOT validate empirical claim" alongside any
-   `__HEXA_RTSC_*__ PASS` line. raw#10 honest C3 mandate.
 3. **Falsifier monotone**: F-RTSC-{1,2,3} + F-SC-{1,2,3} status flips
    only `OPEN → CONFIRMED` or `OPEN → DEMOTED`. **Never** silently retract.
 4. **hexa-only orchestration**: code lives in `cli/` `verify/` `tests/`
-   `module/` only, .hexa primary (raw#9). No Python bridge.
 
 ## Edit policy
 

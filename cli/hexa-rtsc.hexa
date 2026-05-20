@@ -11,16 +11,12 @@
 //   help        — this help
 //   --version   — print version
 //
-// HONEST STATUS (raw#10 C3):
 //   RT-SC is academically UNPROVEN as of 2026-05. LK-99 (2023) and
 //   subsequent candidates have not been independently replicated.
 //   This v1.0.0 CLI dispatcher is a PLACEHOLDER — no working empirical
 //   sandbox; verbs print spec excerpt + falsifier preregister only.
 //
 // Constraints:
-//   raw#9   — hexa-only orchestration; no python bridge
-//   raw#15  — write-confined (audit log only)
-//   raw#10  — honest C3 caveats embedded
 //
 // Cost: $0 (Mac local; pure spec-print, no compute).
 
@@ -81,11 +77,9 @@ fn _file_exists(p: str) -> bool {
     return r == "yes"
 }
 
-// ─── caveat printer (raw#10 honest C3) ───
 
 fn _print_caveats() {
     println("")
-    println("--- caveats (raw#10 C3) ---")
     println("  1. RT-SC is academically UNPROVEN (LK-99 etc. unsettled). v1.0.0 ships")
     println("     spec + falsifier preregister only — no working empirical sandbox.")
     println("  2. CLI dispatcher is PLACEHOLDER TBD; verbs print spec excerpt only.")
