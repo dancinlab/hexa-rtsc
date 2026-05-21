@@ -42,7 +42,7 @@ hexa-rtsc/                          T0 (repo root)
 │
 ├── doc/                            T0 — human-archive + Stage A specs
 │   ├── lineage/origin.md
-│   ├── synthesis_bench_v0.md       Stage A: F-RTSC-1 LK-99 reproduction bench ($2.6M)
+│   ├── synthesis_bench_v0.md       Stage A: F-RTSC-1 claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) reproduction bench ($2.6M)
 │   ├── 48t_rebco_coil_v0.md        Stage A: F-RTSC-3 48 T magnet ($3.3M)
 │   └── calorimetry_rig_v0.md       Stage A: F-SC-3 ΔC/γTc rig ($0.8M)
 │

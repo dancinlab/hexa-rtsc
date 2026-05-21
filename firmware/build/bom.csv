@@ -15,7 +15,7 @@
 #   note          — additional context
 
 bench,item,spec,vendor,pn,unit_cost_usd,qty,subtotal_usd,lead_weeks,note
-synthesis,High-pressure cell,5-20 GPa Belt apparatus,Almax Easylab,BX90,180000,1,180000,16,LK-99 + hydride synthesis
+synthesis,High-pressure cell,5-20 GPa Belt apparatus,Almax Easylab,BX90,180000,1,180000,16,claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) + hydride synthesis
 synthesis,Tube furnace,RT-1500 C 60mm bore,Carbolite Gero,STF15/180,12000,1,12000,8,925C heat treatment
 synthesis,Vacuum + Ar,1e-6 mbar + 5N Ar,Pfeiffer + Praxair,HiCube80,28000,1,28000,4,inert atmosphere
 synthesis,Glovebox,<0.1 ppm O2/H2O,MBraun,UNILAB Pro,65000,1,65000,12,air-sensitive precursors

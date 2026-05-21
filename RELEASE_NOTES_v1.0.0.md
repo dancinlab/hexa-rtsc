@@ -10,7 +10,7 @@ This is the **initial standalone release** of `hexa-rtsc`, a 2-verb
 **substrate-of-substrates** organized around the **n=6 invariant lattice**:
 RTSC (Tc=300K, Hc2=σ·τ=48T, Cooper φ=2) and SC (BCS, Abrikosov CN=6).
 v1.0.0 ships **spec + falsifier preregister** only — no working empirical
-sandbox. RT-SC is **academically unproven** (LK-99 et al. unsettled).
+sandbox. RT-SC is **academically unproven** (claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) et al. unsettled).
 
 ## Highlights
 
@@ -33,7 +33,7 @@ sandbox. RT-SC is **academically unproven** (LK-99 et al. unsettled).
   <https://github.com/dancinlab/hexa-rtsc>.
 
 
-> **RT-SC is academically UNPROVEN.** LK-99 (2023) and subsequent room-temp
+> **RT-SC is academically UNPROVEN.** claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) (2023) and subsequent room-temp
 > candidates have **not been independently replicated**. This v1.0.0 release
 > makes **no empirical claim** of working RT-SC. The substrate ships:
 >

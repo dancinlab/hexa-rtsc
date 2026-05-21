@@ -4,7 +4,7 @@
 //
 // Models the QD MPMS-3 SQUID magnetometer GPIB interface (BOM #6 from
 // doc/synthesis_bench_v0.md) + Tc / Meissner susceptibility extraction
-// for F-RTSC-1 (LK-99 reproduction) raw-data acquisition.
+// for F-RTSC-1 (claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) reproduction) raw-data acquisition.
 //
 // Spec: doc/synthesis_bench_v0.md (Stage A) BOM #6.
 //

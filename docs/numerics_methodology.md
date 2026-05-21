@@ -122,7 +122,7 @@ reproducible offline).
 **Where**: NOT in this repo. `.roadmap.hexa_rtsc §A.6` Step 4 +
 RELEASE_NOTES §"Next steps".
 
-**What would close it**: running real synthesis (LK-99 or successor
+**What would close it**: running real synthesis (claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) or successor
 candidate) on a real bench, energising a real 48 T REBCO coil at
 4.2 K, measuring real ΔC/γTc on a real calorimeter — and the result
 matching the closed-form prediction within published error bars.
@@ -193,13 +193,13 @@ Parity script compares against published REBCO coil records
 (NHMFL 32 T 2017, Jefferson Lab 36 T tape-stack 2020, KEK J-PARC
 HTS test 28 T 2021).
 
-### 2.4 LK-99 (`calc_lk99.hexa` + `numerics_lk99*.hexa`)
+### 2.4 claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) (`calc_lk99.hexa` + `numerics_lk99*.hexa`)
 
-Closes F-RTSC-1 (LK-99 reproduction failure). Holds the **negative-
+Closes F-RTSC-1 (claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) reproduction failure). Holds the **negative-
 result** row inside σ=12 substrate molecule. Methodology specifics:
 
 - **Substrate-class enumeration** (sc/superconductor.md): σ=12
-  candidate families. LK-99 (Pb₁₀₋ₓCuₓ(PO₄)₆O) demoted in 2023
+  candidate families. claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) (Pb₁₀₋ₓCuₓ(PO₄)₆O) demoted in 2023
   multiple-failure cycle → 11 candidates remain (numerics_cross_pillar
   I6 verifies σ−1=11).
 - **DFT cross-check** (`numerics_lk99_dft.hexa`, §A.6.1 Phase B):
