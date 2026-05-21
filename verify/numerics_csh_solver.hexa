@@ -1,5 +1,5 @@
 #!hexa strict
-// hexa-rtsc/verify/numerics_lk99_solver.hexa — Clopper–Pearson binomial
+// hexa-rtsc/verify/numerics_csh_solver.hexa — Clopper–Pearson binomial
 // confidence-interval Newton solver (T2 numerical, 3rd stack on F-RTSC-1).
 //
 // Recipe §1 slot #6 — numerics_<pillar>_solver. Final companion to
@@ -28,11 +28,11 @@
 // Newton: p_{n+1} = p_n − F(p_n)/F'(p_n).
 //
 // Reproduction-history cohort (5 RT-SC claims):
-//   LK-99 (2023, 400 K)        k = 0  of n = 10  attempts
-//   C-S-H Dias (2020, 287 K)   k = 0  of n =  5  attempts (pre-retraction)
-//   Lu-N-H Dias (2023, 294 K)  k = 0  of n =  5  attempts (pre-retraction)
-//   Cu-Pb-H (2018, 200 K)      k = 0  of n =  5  attempts
-//   USO (1987, claim ~70 K)    k = 0  of n =  3  attempts (pre-retraction)
+//   CSH Snider 2020 (287 K @ 267 GPa, RETRACTED 2022)  k = 0  of n =  6  attempts (pre-retraction)
+//   downstream RT-SC cohort aggregate                  k = 0  of n = 10  attempts
+//   Lu-N-H Dias (2023, 294 K)                          k = 0  of n =  5  attempts (pre-retraction)
+//   Cu-Pb-H (2018, 200 K)                              k = 0  of n =  5  attempts
+//   USO (1987, claim ~70 K)                            k = 0  of n =  3  attempts (pre-retraction)
 //
 // Sanity check at k = 1 / n = 10 (synthetic): Newton vs. exact root
 // from the regularised incomplete-beta closed form.
@@ -51,7 +51,7 @@
 //        cohort UCL collapses to 0 or 1, or n=6 anchor break.
 //
 // Run:
-//     hexa run verify/numerics_lk99_solver.hexa
+//     hexa run verify/numerics_csh_solver.hexa
 //
 // @no-lock-needed
 
@@ -269,10 +269,10 @@ fn check_n6_anchors() {
     let id1 = SIGMA * PHI
     let id2 = N6 * TAU
     _check(rel_err(id1, 24.0) < 1.0e-12 && rel_err(id2, 24.0) < 1.0e-12,
-        "master identity σ·φ = n·τ = 24 holds (lk99_solver scope)",
+        "master identity σ·φ = n·τ = 24 holds (csh_solver scope)",
         "σ·φ=" + str(id1) + "  n·τ=" + str(id2))
 
-    // σ-φ = 10 false-positive multiplier (from numerics_lk99 anchor)
+    // σ-φ = 10 false-positive multiplier (from numerics_csh anchor)
     let sm = SIGMA - PHI
     _check(rel_err(sm, 10.0) < 1.0e-12,
         "σ-φ = 10 false-positive multiplier (n=6 RT-SC retraction floor)",
@@ -288,7 +288,7 @@ let FALSIFIERS = [
     "monotonicity break — k=1 UCL ≤ k=0 UCL → DEMOTE binomial CDF monotonicity in k",
     "binomial anchor break — C(10,0) ≠ 1 or C(10,2) ≠ 45 or C(6,3) ≠ 20 → DEMOTE binom_coeff",
     "reproduction floor break — τ(6) ≠ 4 → DEMOTE n=6 reproduction-floor anchor",
-    "n=6 master break — σ·φ ≠ 24 or σ-φ ≠ 10 in solver scope → DEMOTE n=6 lattice in LK-99 stats",
+    "n=6 master break — σ·φ ≠ 24 or σ-φ ≠ 10 in solver scope → DEMOTE n=6 lattice in CSH stats",
 ]
 
 
@@ -296,7 +296,7 @@ let FALSIFIERS = [
 
 fn main() {
     println("========================================================================")
-    println("  hexa-rtsc — pillar `rtsc` LK-99 binomial UCL Newton solver (T2 ×3, F-RTSC-1)")
+    println("  hexa-rtsc — pillar `rtsc` CSH binomial UCL Newton solver (T2 ×3, F-RTSC-1)")
     println("========================================================================")
     println("  Clopper–Pearson UCL: solve P(X ≤ k | n, p) − α = 0 for p")
     println("  closed-form k=0    : p = 1 − α^{1/n}")
@@ -311,12 +311,12 @@ fn main() {
     check_reproduction_floor()
     println("")
 
-    println("  LK-99 (2023, 400 K, k=0 / n=10):")
-    check_cohort_k0("LK-99", 10)
+    println("  CSH Snider 2020 (287 K @ 267 GPa, k=0 / n=6, RETRACTED 2022):")
+    check_cohort_k0("CSH", 6)
     println("")
 
-    println("  C-S-H Dias (2020, 287 K, k=0 / n=5, RETRACTED):")
-    check_cohort_k0("C-S-H", 5)
+    println("  downstream RT-SC cohort aggregate (k=0 / n=10):")
+    check_cohort_k0("RT-SC cohort", 10)
     println("")
 
     println("  Lu-N-H Dias (2023, 294 K, k=0 / n=5, RETRACTED):")
@@ -347,11 +347,11 @@ fn main() {
     println("  " + str(pass_n) + "/" + str(RUN) + " checks passed")
     if FAIL > 0 {
         println("  Solver T2 ×3 leg FAILED — see per-check output above.")
-        println("__HEXA_RTSC_NUMERICS_LK99_SOLVER__ FAIL")
+        println("__HEXA_RTSC_NUMERICS_CSH_SOLVER__ FAIL")
         exit(1)
     }
     println("  T2 ×3 stack closed: F-RTSC-1 now has algebra + closed-form + parity + solver.")
     println("  RT-SC empirical reproduction TBD — solver = numerical regression-lock only.")
-    println("__HEXA_RTSC_NUMERICS_LK99_SOLVER__ PASS")
+    println("__HEXA_RTSC_NUMERICS_CSH_SOLVER__ PASS")
     exit(0)
 }

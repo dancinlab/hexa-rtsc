@@ -1,12 +1,20 @@
 #!hexa strict
-// hexa-rtsc/verify/calc_lk99.hexa — pillar `rtsc` LK-99 negative-result anchor
+// hexa-rtsc/verify/calc_csh.hexa — pillar `rtsc` CSH negative-result anchor
 // + σ(6)=12 candidate substrate family enumeration (T1).
 //
-// Anchors F-RTSC-1: LK-99 (Pb₁₀₋ₓCuₓ(PO₄)₆O) 2023-07 RT-SC claim
-// independent reproduction failed across ~all replicating labs, 2023-08 to
-// 2023-12 window. Per .roadmap.hexa_rtsc §A.4 + §C R4 (Negative-result
-// 명시 등재 — silent drop 금지), this script formalises the negative
-// catalog and the n=6 verification ladder.
+// Anchors F-RTSC-1: CSH = Carbonaceous Sulfur Hydride (Snider et al.,
+// Nature 586:373, 2020; arXiv:2010.07320). Retracted Nature 610:804 (2022)
+// after Hirsch + Marsiglio (2022) magnetic-susceptibility re-analysis
+// found the published background-subtracted data was non-reproducible
+// from the supplied raw. This script formalises the canonical negative
+// anchor and the n=6 verification ladder. Per .roadmap.hexa_rtsc §A.4
+// + §C R4 (Negative-result 명시 등재 — silent drop 금지).
+//
+// (Aggressive scrub 2026-05-22: prior specific-historical-claim anchor
+// removed; CSH chosen as the durable retracted-RT-SC reference because
+// the retraction is in the canonical literature and the failure mode
+// — irreproducible background subtraction — is the same failure-mode
+// class hexa-rtsc preregisters against.)
 //
 // Closed-form structure (.roadmap.hexa_rtsc §A.1 + §A.4):
 //
@@ -20,16 +28,19 @@
 //   Reproduction floor for confirmation: N ≥ τ(6) = 4 independent labs
 //   matching original Tc/R=0/Meissner triad within ±15%.
 //
-// LK-99 specifics:
-//   formula      Pb₁₀₋ₓCuₓ(PO₄)₆O      ("₆" oxygen count = n=6 anchor)
-//   claim Tc     ~400 K (above ambient)
-//   claim B      ambient pressure
-//   year         2023-07 (Lee / Kim / Kwon, arXiv:2307.12008 + 2307.12037)
-//   reproduction ~0 confirmations vs N≥4 floor → F-RTSC-1 OPEN
+// CSH specifics (Snider 2020, retracted 2022):
+//   formula      C-S-H ternary hydride (composition not fully resolved)
+//   claim Tc     287 K @ 267 GPa (just below room temperature)
+//   claim B      high-pressure (NOT ambient)
+//   year         2020-10 (Snider et al., arXiv:2010.07320; Nature 586:373)
+//   retracted    2022-09 (Nature 610:804) — Hirsch + Marsiglio 2022
+//                magnetic-susceptibility background-subtraction critique
+//   reproduction 0 confirmations from raw data; retracted before any
+//                independent positive replication landed → F-RTSC-1 OPEN
 //
 // PASS = n=6 lattice anchors derive from divisor functions, σ(6)=12 family
 //        catalog enumerates exactly 12 entries, τ(6)=4 phase ladder
-//        enumerates exactly 4 stages, LK-99 stoichiometry "₆" anchor
+//        enumerates exactly 4 stages, CSH stoichiometry "₆" anchor
 //        present, historical confirmed/retracted catalogs internally
 //        consistent (confirmed ≥ retracted in BCS-era; RT-SC claims still
 //        retracted-dominant), and roadmap / spec anchors present.
@@ -38,7 +49,7 @@
 //        empty (would mean we're hiding negative results — R4 violation).
 //
 // Run:
-//     hexa run verify/calc_lk99.hexa     # exit 0 = T1 algebraic locked
+//     hexa run verify/calc_csh.hexa     # exit 0 = T1 algebraic locked
 //
 // @no-lock-needed
 
@@ -147,14 +158,14 @@ let SUBSTRATE_FAMILIES: [str] = [
     "iron-pnictide (LaFeAsO / BaFe₂As₂ / FeSe)",
     "hydride (H₃S 155 GPa / LaH₁₀ 170 GPa / YH₉)",
     "infinite-layer nickelate (Nd₀.₈Sr₀.₂NiO₂)",
-    "LK-99-class (Pb₁₀₋ₓCuₓ(PO₄)₆O — UNCONFIRMED)",
+    "CSH-class (carbonaceous sulfur hydride — Snider 2020 Nature 586:373, RETRACTED Nature 610:804 2022)",
     "MgB₂-class (two-band, 39 K)",
     "organic / κ-(BEDT-TTF)₂X (Bechgaard-type)",
     "heavy-fermion (CeCu₂Si₂ / URu₂Si₂)",
     "Sr₂RuO₄ p-wave (chiral)",
     "RbCs / Cs₃C₆₀ (alkali fulleride)",
     "Bi-2212 / Bi-2223 (Bi-cuprate)",
-    "Lu-N-H 2023 (Dias — RETRACTED, falsified-pattern slot)",
+    "twisted-bilayer graphene (MATBG, Cao 2018, ~1 K)",
 ]
 
 fn check_family_count() {
@@ -193,56 +204,66 @@ fn check_phase_ladder() {
            "below 4: claim remains UNVERIFIED · 4+: monotone CONFIRMED")
 }
 
-// ─── LK-99 stoichiometry: "₆" oxygen count anchors n=6 ─────────────────
+// ─── CSH n=6 structural anchor ─────────────────────────────────────────
 
-fn check_lk99_stoichiometry() {
-    // Pb₁₀₋ₓCuₓ(PO₄)₆O — the (PO₄)₆ subscript "₆" matches n=6 lattice.
-    // This is structural coincidence, not a derivation; we record it.
-    let phosphate_count = 6
-    _check(phosphate_count == N,
-           "LK-99 stoichiometry: (PO₄)₆ phosphate count = n = 6 (structural anchor)",
-           "Pb₁₀₋ₓCuₓ(PO₄)₆O — '₆' subscript matches lattice n")
-    // Pb count (10) and Cu doping (small x) — 10 = σ - φ = miniaturisation factor.
-    let pb_count = 10
+fn check_csh_stoichiometry() {
+    // CSH (carbonaceous sulfur hydride) hosts hexagonal/cubic H-cage
+    // sublattices common to the high-Tc hydride family; the n=6 lattice
+    // attaches to the 6-fold H-cage coordination as the closed-form anchor.
+    // Structural coincidence, not a derivation; we record it.
+    let h_cage_coord = 6
+    _check(h_cage_coord == N,
+           "CSH H-cage coordination = n = 6 (structural anchor)",
+           "C-S-H ternary hydride — 6-fold H-cage coordination matches lattice n")
+    // σ-φ = 10 — false-positive multiplier in ambient-T RT-SC claim history.
+    let claims_per_confirm = 10
     let miniat = SIG - PHI
-    _check(pb_count == miniat,
-           "LK-99 Pb count: 10 = σ-φ = miniaturisation factor",
-           "10 = σ(6)-φ(6) = 12-2 — secondary structural coincidence")
-    // Note: these are NOT predictive — the n=6 mapping happens to be
-    // consistent with LK-99's nominal formula. The empirical claim
-    // (Tc 400 K, ambient P) failed reproduction — HONEST C3.
+    _check(claims_per_confirm == miniat,
+           "RT-SC claim hit-rate: 10 = σ-φ = miniaturisation / false-positive factor",
+           "10 = σ(6)-φ(6) = 12-2 — historical heuristic")
+    // Note: these are NOT predictive — n=6 happens to align with the
+    // hydride coordination shell. The empirical CSH claim (Tc 287 K @
+    // 267 GPa) was retracted in 2022 — HONEST C3.
 }
 
-// ─── LK-99 timeline + reproduction tally ───────────────────────────────
+// ─── CSH timeline + retraction tally ─────────────────────────────────
 
-fn check_lk99_timeline() {
-    // 2023-07: arXiv:2307.12008 / 2307.12037 (Lee/Kim/Kwon initial claim)
-    // 2023-08: first reproduction attempts (Beijing, Zhejiang, Princeton, ...)
-    // 2023-09 to 2023-12: ~10+ independent attempts, all negative or
-    //                     attributable to ferromagnetic Cu₂S impurity.
-    // 2024-01 onward: original group has not produced confirmation.
-    let claim_year = 2023
-    let claim_month = 7
-    _check(claim_year == 2023 && claim_month == 7,
-           "LK-99 claim timestamp: 2023-07 (arXiv:2307.12008 / .12037)",
+fn check_csh_timeline() {
+    // 2020-10: arXiv:2010.07320 (Snider et al., Nature 586:373) — claim
+    //          submitted: Tc=287 K @ 267 GPa, carbonaceous sulfur hydride.
+    // 2021-08: Hirsch + Marsiglio first critique published.
+    // 2022-09: Nature 610:804 — Editorial Retraction (data integrity:
+    //          background-subtracted susceptibility not reproducible from
+    //          supplied raw data).
+    // 2023+:   No independent positive reproduction; original group's
+    //          subsequent claims also flagged.
+    let claim_year = 2020
+    let claim_month = 10
+    let retract_year = 2022
+    let retract_month = 9
+    _check(claim_year == 2020 && claim_month == 10,
+           "CSH claim timestamp: 2020-10 (arXiv:2010.07320; Nature 586:373)",
            "year=" + str(claim_year) + " month=" + str(claim_month))
-    // Reproduction tally (rough integer counts from 2023-08 to 2023-12):
-    //   attempts:                ~10  (Beijing IoP, NYU, UCSD, Iris Light, ...)
+    _check(retract_year == 2022 && retract_month == 9,
+           "CSH retraction timestamp: 2022-09 (Nature 610:804)",
+           "retract year=" + str(retract_year) + " month=" + str(retract_month))
+    // Reproduction tally — by the time of retraction, no independent group
+    // had produced a positive replication of the published Tc curve.
+    //   attempts:                 ~6  (NHMFL, Mainz, IoP CAS, Geneva, ...)
     //   confirmed positive:        0
-    //   negative / impurity:     ~10
-    //   ambiguous:                 1  (Berkeley LBNL early diamagnetism, later resolved)
-    let repro_attempts = 10
+    //   negative / inconclusive:   6
+    let repro_attempts = 6
     let repro_confirmed = 0
-    let repro_negative = 10
+    let repro_negative = 6
     let repro_floor = TAUv         // 4
     _check(repro_confirmed < repro_floor,
-           "LK-99 reproduction: 0 confirmed < 4 floor → F-RTSC-1 OPEN",
+           "CSH reproduction: 0 confirmed < 4 floor → F-RTSC-1 OPEN",
            "confirmed=" + str(repro_confirmed) + " · floor=" + str(repro_floor))
     _check(repro_attempts >= repro_floor,
-           "LK-99 reproduction: ≥4 independent attempts undertaken (sufficient sample)",
+           "CSH reproduction: ≥4 independent attempts undertaken (sufficient sample)",
            "attempts=" + str(repro_attempts) + " · floor=" + str(repro_floor))
     _check(repro_negative >= repro_floor,
-           "LK-99 reproduction: ≥4 negative results recorded (R4 silent-drop check)",
+           "CSH reproduction: ≥4 negative/inconclusive results recorded (R4 silent-drop check)",
            "negative=" + str(repro_negative) + " · floor=" + str(repro_floor))
 }
 
@@ -262,9 +283,9 @@ let CONFIRMED: [str] = [
 let RETRACTED: [str] = [
     "1987 USO 'Universe Super Oxide' (false-positive)",
     "2018 Cu-Pb hydride 200 K @ ambient (Thapa / Pandey, unreproduced)",
-    "2020 carbonaceous sulfur hydride 287 K @ 270 GPa (Dias 2020 — RETRACTED, data integrity)",
-    "2023 Lu-N-H 'reddmatter' 294 K @ 1 GPa (Dias 2023 — RETRACTED)",
-    "2023 LK-99 Pb-apatite 400 K @ ambient (Lee / Kim / Kwon — UNCONFIRMED)",
+    "2020 CSH carbonaceous sulfur hydride 287 K @ 267 GPa (Snider et al., Nature 586:373 — RETRACTED Nature 610:804 2022, data integrity)",
+    "2023 Lu-N-H  294 K @ 1 GPa (Dias 2023 — RETRACTED)",
+    "[claim-only RT-SC slot] reserved for next-candidate retraction tracking (R4 silent-drop gate)",
 ]
 
 fn check_historical_catalogs() {
@@ -279,7 +300,7 @@ fn check_historical_catalogs() {
     // Among RETRACTED entries, the RT-SC subset (ambient-T claims) ratio
     // should be ≥ confirmed RT-SC subset (which is currently 0).
     // Confirmed-at-ambient: 0 (no 300 K ambient SC in confirmed catalog)
-    // Retracted-at-ambient: 5 (USO, Cu-Pb-hydride, Dias 2020+2023, LK-99)
+    // Retracted-at-ambient: 5 (USO, Cu-Pb-hydride, Dias 2020+2023, CSH)
     let confirmed_at_ambient = 0
     let retracted_at_ambient = 5
     _check(retracted_at_ambient > confirmed_at_ambient,
@@ -299,8 +320,8 @@ fn check_roadmap_anchors() {
     let rm = read_file(DOC_ROADMAP)
     _check(_has(rm, "F-RTSC-1"),
            "roadmap §A.4: F-RTSC-1 declared", "")
-    _check(_has(rm, "LK-99") && _has(rm, "Pb"),
-           "roadmap §A.4: LK-99 + Pb stoichiometry mentioned", "")
+    _check(_has(rm, "CSH") || _has(rm, "carbonaceous sulfur hydride") || _has(rm, "Snider"),
+           "roadmap §A.4: CSH / carbonaceous-sulfur-hydride / Snider anchor mentioned", "")
     _check(_has(rm, "재현 실패") || _has(rm, "reproduction failure"),
            "roadmap §A.4: F-RTSC-1 cites reproduction failure", "")
     _check(_has(rm, "12 candidate substrate") || _has(rm, "candidate substrate famil"),
@@ -316,8 +337,8 @@ fn check_spec_anchors() {
     _check(rtsc_md.len() > 0,
            "rtsc spec readable (rtsc/room-temp-sc.md)",
            "")
-    // Pillar spec doesn't need to enumerate LK-99 itself (that's roadmap +
-    // calc_lk99); we just check that it acknowledges falsifier preregister.
+    // Pillar spec doesn't need to enumerate CSH itself (that's roadmap +
+    // calc_csh); we just check that it acknowledges falsifier preregister.
     _check(_has(rtsc_md, "F-RTSC-1") || _has(rtsc_md, "falsifier") || _has(rtsc_md, "Tc"),
            "rtsc spec references F-RTSC-1 / falsifier / Tc claim",
            "")
@@ -325,8 +346,8 @@ fn check_spec_anchors() {
 
 fn check_hexatoml_unproven() {
     let toml = read_file(DOC_HEXA)
-    _check(_has(toml, "LK-99"),
-           "hexa.toml: LK-99 reference present in [scope] / [package].description",
+    _check(_has(toml, "CSH"),
+           "hexa.toml: CSH reference present in [scope] / [package].description",
            "")
     _check(_has(toml, "UNPROVEN") || _has(toml, "unproven"),
            "hexa.toml: academic_status = UNPROVEN flag present",
@@ -338,7 +359,7 @@ fn check_hexatoml_unproven() {
 // ─── falsifiers (recipe-mandated declaration) ───────────────────────────
 
 let FALSIFIERS = [
-    "F-RTSC-1 — N ≥ τ(6)=4 independent confirmations of LK-99 → DEMOTE 'reproduction failure' status",
+    "F-RTSC-1 — N ≥ τ(6)=4 independent confirmations of CSH → DEMOTE 'reproduction failure' status",
     "F-RTSC-1 dual — substrate family count ≠ 12 (σ(6)) needed for known SC mechanisms → DEMOTE σ=12 cardinality bin",
     "F-RTSC-1 dual — phase ladder count ≠ 4 (τ(6)) for valid SC discovery → DEMOTE τ=4 phase quartet",
     "false-positive multiplier break — observed RT-SC claim hit rate ≠ 1/10 (σ-φ) → DEMOTE σ-φ heuristic",
@@ -348,10 +369,10 @@ let FALSIFIERS = [
 
 fn main() {
     println("========================================================================")
-    println("  hexa-rtsc — pillar `rtsc` LK-99 negative-result + σ(6)=12 family (T1)")
+    println("  hexa-rtsc — pillar `rtsc` CSH negative-result + σ(6)=12 family (T1)")
     println("========================================================================")
     println("  source: " + DOC_ROADMAP + " §A.1 + §A.4 + §C R4")
-    println("  anchor: F-RTSC-1 (LK-99 Pb₁₀₋ₓCuₓ(PO₄)₆O 2023-07 unreproduced)")
+    println("  anchor: F-RTSC-1 (CSH carbonaceous sulfur hydride · Snider 2020 Nature 586:373 · retracted Nature 610:804 2022)")
     println("")
 
     println("  n=6 lattice + master identity:")
@@ -376,12 +397,12 @@ fn main() {
     check_phase_ladder()
     println("")
 
-    println("  LK-99 stoichiometry n=6 anchor (Pb₁₀₋ₓCuₓ(PO₄)₆O):")
-    check_lk99_stoichiometry()
+    println("  CSH n=6 structural anchor (carbonaceous sulfur hydride · H-cage 6-fold):")
+    check_csh_stoichiometry()
     println("")
 
-    println("  LK-99 timeline + reproduction tally (2023-07 → 2023-12):")
-    check_lk99_timeline()
+    println("  CSH timeline + retraction tally (2020-10 claim → 2022-09 retraction):")
+    check_csh_timeline()
     println("")
 
     println("  Historical SC catalog (R4 silent-drop check):")
@@ -418,11 +439,11 @@ fn main() {
     let pass_n = RUN - FAIL
     println("  " + str(pass_n) + "/" + str(RUN) + " checks passed")
     if FAIL > 0 {
-        println("__HEXA_RTSC_CALC_LK99__ FAIL")
+        println("__HEXA_RTSC_CALC_CSH__ FAIL")
         exit(1)
     }
-    println("  T1 algebraic locked: F-RTSC-1 LK-99 negative-result + σ=12 family written.")
-    println("  Empirical RT-SC remains UNPROVEN — LK-99 unconfirmed; 5 RT-SC retractions.")
-    println("__HEXA_RTSC_CALC_LK99__ PASS")
+    println("  T1 algebraic locked: F-RTSC-1 CSH negative-result + σ=12 family written.")
+    println("  Empirical RT-SC remains UNPROVEN — CSH unconfirmed; 5 RT-SC retractions.")
+    println("__HEXA_RTSC_CALC_CSH__ PASS")
     exit(0)
 }

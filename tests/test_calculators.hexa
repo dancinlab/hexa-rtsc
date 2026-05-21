@@ -9,7 +9,7 @@
 //   verify/calc_bcs.hexa        __HEXA_RTSC_CALC_BCS__ PASS         (T1, F-SC-1/2/3)
 //   verify/calc_mcmillan.hexa   __HEXA_RTSC_CALC_MCMILLAN__ PASS    (T1, F-RTSC-2)
 //   verify/calc_hc2_48t.hexa    __HEXA_RTSC_CALC_HC2_48T__ PASS     (T1, F-RTSC-3)
-//   verify/calc_lk99.hexa       __HEXA_RTSC_CALC_LK99__ PASS        (T1, F-RTSC-1)
+//   verify/calc_csh.hexa       __HEXA_RTSC_CALC_CSH__ PASS        (T1, F-RTSC-1)
 //   verify/numerics_bcs.hexa    __HEXA_RTSC_NUMERICS_BCS__ PASS     (T2, F-SC-1/2/3)
 //
 // Run:
@@ -21,25 +21,25 @@ let CALCULATORS: [[str]] = [
     ["verify/calc_bcs.hexa",      "__HEXA_RTSC_CALC_BCS__ PASS"],
     ["verify/calc_mcmillan.hexa", "__HEXA_RTSC_CALC_MCMILLAN__ PASS"],
     ["verify/calc_hc2_48t.hexa",  "__HEXA_RTSC_CALC_HC2_48T__ PASS"],
-    ["verify/calc_lk99.hexa",     "__HEXA_RTSC_CALC_LK99__ PASS"],
+    ["verify/calc_csh.hexa",     "__HEXA_RTSC_CALC_CSH__ PASS"],
     ["verify/numerics_bcs.hexa",      "__HEXA_RTSC_NUMERICS_BCS__ PASS"],
     ["verify/numerics_mcmillan.hexa", "__HEXA_RTSC_NUMERICS_MCMILLAN__ PASS"],
     ["verify/numerics_hc2_48t.hexa",  "__HEXA_RTSC_NUMERICS_HC2_48T__ PASS"],
-    ["verify/numerics_lk99.hexa",        "__HEXA_RTSC_NUMERICS_LK99__ PASS"],
+    ["verify/numerics_csh.hexa",        "__HEXA_RTSC_NUMERICS_CSH__ PASS"],
     ["verify/numerics_bcs_parity.hexa",       "__HEXA_RTSC_NUMERICS_BCS_PARITY__ PASS"],
     ["verify/numerics_mcmillan_parity.hexa",  "__HEXA_RTSC_NUMERICS_MCMILLAN_PARITY__ PASS"],
     ["verify/numerics_hc2_48t_parity.hexa",   "__HEXA_RTSC_NUMERICS_HC2_48T_PARITY__ PASS"],
-    ["verify/numerics_lk99_parity.hexa",            "__HEXA_RTSC_NUMERICS_LK99_PARITY__ PASS"],
+    ["verify/numerics_csh_parity.hexa",            "__HEXA_RTSC_NUMERICS_CSH_PARITY__ PASS"],
     ["verify/numerics_lattice_arithmetic.hexa",     "__HEXA_RTSC_NUMERICS_LATTICE_ARITHMETIC__ PASS"],
     ["verify/numerics_cross_pillar.hexa",           "__HEXA_RTSC_NUMERICS_CROSS_PILLAR__ PASS"],
     ["verify/numerics_bcs_solver.hexa",             "__HEXA_RTSC_NUMERICS_BCS_SOLVER__ PASS"],
     ["verify/numerics_mcmillan_solver.hexa",        "__HEXA_RTSC_NUMERICS_MCMILLAN_SOLVER__ PASS"],
     ["verify/numerics_hc2_48t_solver.hexa",         "__HEXA_RTSC_NUMERICS_HC2_48T_SOLVER__ PASS"],
-    ["verify/numerics_lk99_solver.hexa",            "__HEXA_RTSC_NUMERICS_LK99_SOLVER__ PASS"],
-    ["verify/numerics_lk99_dft.hexa",               "__HEXA_RTSC_NUMERICS_LK99_DFT__ PASS"],
+    ["verify/numerics_csh_solver.hexa",            "__HEXA_RTSC_NUMERICS_CSH_SOLVER__ PASS"],
+    ["verify/numerics_csh_dft.hexa",               "__HEXA_RTSC_NUMERICS_CSH_DFT__ PASS"],
     ["verify/numerics_tdgl_vortex.hexa",            "__HEXA_RTSC_NUMERICS_TDGL_VORTEX__ PASS"],
     ["verify/numerics_whh_full.hexa",               "__HEXA_RTSC_NUMERICS_WHH_FULL__ PASS"],
-    ["verify/empirical_lk99_arxiv.hexa",                "__HEXA_RTSC_EMPIRICAL_LK99_ARXIV__ PASS"],
+    ["verify/empirical_csh_arxiv.hexa",                "__HEXA_RTSC_EMPIRICAL_CSH_ARXIV__ PASS"],
     ["verify/empirical_mcmillan_arxiv.hexa",            "__HEXA_RTSC_EMPIRICAL_MCMILLAN_ARXIV__ PASS"],
     ["verify/empirical_hc2_high_field_arxiv.hexa",      "__HEXA_RTSC_EMPIRICAL_HC2_HIGH_FIELD_ARXIV__ PASS"],
     ["verify/empirical_bcs_cooper_arxiv.hexa",          "__HEXA_RTSC_EMPIRICAL_BCS_COOPER_ARXIV__ PASS"],

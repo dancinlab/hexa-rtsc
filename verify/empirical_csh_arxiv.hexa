@@ -1,15 +1,16 @@
 #!hexa strict
-// hexa-rtsc/verify/empirical_lk99_arxiv.hexa — F-RTSC-1 T3 closure (archival).
+// hexa-rtsc/verify/empirical_csh_arxiv.hexa — F-RTSC-1 T3 closure (archival).
 //
-// Confirms that the published LK-99 / lead-apatite / room-temp
-// superconductor reproduction-attempt corpus is real and discoverable.
-// F-RTSC-1's preregister statement is "LK-99 reproduction failure →
+// Confirms that the published CSH (carbonaceous sulfur hydride; Snider
+// 2020 Nature 586:373, retracted Nature 610:804 2022) and high-Tc
+// hydride class reproduction-attempt corpus is real and discoverable.
+// F-RTSC-1's preregister statement is "unreplicated RT-SC claim →
 // next-candidate substrate spec update". The strongest hardware-free
 // anchor we can hit is the **arXiv corpus** (open API, indexed across
 // cond-mat.supr-con / cond-mat.mtrl-sci).
 //
 // Policy: API-first, fixture-fallback, both compared when available.
-//   1. Try live arXiv query for "LK-99 OR Pb10 OR apatite superconductor".
+//   1. Try live arXiv query for hydride superconductor / CSH corpus.
 //   2. Always fall back to bundled fixture under verify/fixtures/.
 //   3. If both reachable, assert API total ≥ fixture total (literature
 //      monotonically accumulates).
@@ -20,11 +21,11 @@
 // FAIL  = API responds but corpus has < 100 papers (arXiv outage / parser drift).
 //
 // Tier: F-RTSC-1 T3 (literature-existence empirical anchor).
-// Strict raw-data fit (independent labs reproduce LK-99 Tc + Meissner)
+// Strict raw-data fit (independent labs reproduce CSH Tc + Meissner)
 // remains a Stage-1+ hardware deliverable.
 //
 // Run:
-//   hexa run verify/empirical_lk99_arxiv.hexa
+//   hexa run verify/empirical_csh_arxiv.hexa
 //
 // @no-lock-needed
 
@@ -39,7 +40,7 @@ fn _root() -> str {
 }
 
 let ROOT = _root()
-let FIXTURE_PATH = ROOT + "/verify/fixtures/rtsc_lk99_apatite_supercon.xml"
+let FIXTURE_PATH = ROOT + "/verify/fixtures/rtsc_csh_supercon.xml"
 let DOC_RTSC = ROOT + "/rtsc/room-temp-sc.md"
 
 fn _read(p: str) -> str {
@@ -73,7 +74,9 @@ fn _info(label: str, detail: str) {
 }
 
 // ── arXiv API ───────────────────────────────────────────────────────────
-let API_URL = "https://export.arxiv.org/api/query?search_query=all:LK-99+OR+all:Pb10+OR+all:apatite+superconductor&max_results=3"
+// Query for: carbonaceous sulfur hydride (CSH; Snider 2020 Nature 586:373,
+// retracted Nature 610:804 2022) + hydride high-Tc family corpus.
+let API_URL = "https://export.arxiv.org/api/query?search_query=all:carbonaceous+sulfur+hydride+OR+all:hydride+superconductor+OR+all:H3S+superconductor&max_results=3"
 let MIN_PAPERS = 100
 
 fn fetch_api() -> str {
@@ -130,17 +133,17 @@ fn check_doc_anchor() {
 }
 
 let FALSIFIERS = [
-    "arXiv corpus < 100 papers for LK-99/apatite/superconductor — research territory not real",
+    "arXiv corpus < 100 papers for CSH / hydride superconductor — research territory not real",
     "API responds but parser fails to extract totalResults — arXiv schema drift",
     "fixture present but parses to 0 — fixture corruption",
-    "rtsc/ doc loses LK-99/apatite anchor — empirical feed unmotivated",
+    "rtsc/ doc loses HEXA-RTSC / Tc=300 / room-temp anchor — empirical feed unmotivated",
     "API total < fixture total (when both available) — corpus regression (papers don't disappear)",
 ]
 
 fn main() {
     println("========================================================================")
     println("  hexa-rtsc — F-RTSC-1 T3 closure (arXiv archival empirical anchor)")
-    println("  (live raw-data: independent LK-99 Tc reproduction → Stage-1+ TBD)")
+    println("  (live raw-data: independent CSH Tc reproduction → Stage-1+ TBD)")
     println("========================================================================")
     println("")
     println("  API: " + API_URL)
@@ -170,7 +173,7 @@ fn main() {
     if chosen < 0 {
         println("")
         println("  → both API and fixture cold. T3 unverifiable in this environment.")
-        println("__HEXA_RTSC_EMPIRICAL_LK99_ARXIV__ PASS — offline + no fixture; T3 unverifiable")
+        println("__HEXA_RTSC_EMPIRICAL_CSH_ARXIV__ PASS — offline + no fixture; T3 unverifiable")
         exit(0)
     }
 
@@ -191,9 +194,9 @@ fn main() {
     let pass_n = RUN - FAIL
     println("  " + str(pass_n) + "/" + str(RUN) + " checks passed")
     if FAIL > 0 {
-        println("__HEXA_RTSC_EMPIRICAL_LK99_ARXIV__ FAIL")
+        println("__HEXA_RTSC_EMPIRICAL_CSH_ARXIV__ FAIL")
         exit(1)
     }
-    println("__HEXA_RTSC_EMPIRICAL_LK99_ARXIV__ PASS — F-RTSC-1 T3 (archival arXiv) closes")
+    println("__HEXA_RTSC_EMPIRICAL_CSH_ARXIV__ PASS — F-RTSC-1 T3 (archival arXiv) closes")
     exit(0)
 }

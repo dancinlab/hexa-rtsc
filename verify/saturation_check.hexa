@@ -100,9 +100,9 @@ fn _check(ok: bool, label: str, detail: str) {
 // further down — both files must list the same scripts per tier.
 
 let F1_ID = "F-RTSC-1"
-let F1_T1: [str] = ["calc_lk99.hexa"]
-let F1_T2: [str] = ["numerics_lk99.hexa", "numerics_lk99_parity.hexa", "numerics_lk99_solver.hexa"]
-let F1_T3: [str] = ["empirical_lk99_arxiv.hexa"]
+let F1_T1: [str] = ["calc_csh.hexa"]
+let F1_T2: [str] = ["numerics_csh.hexa", "numerics_csh_parity.hexa", "numerics_csh_solver.hexa"]
+let F1_T3: [str] = ["empirical_csh_arxiv.hexa"]
 
 let F2_ID = "F-RTSC-2"
 let F2_T1: [str] = ["calc_mcmillan.hexa"]

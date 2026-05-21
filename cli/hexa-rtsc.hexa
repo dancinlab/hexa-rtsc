@@ -11,7 +11,7 @@
 //   help        — this help
 //   --version   — print version
 //
-//   RT-SC is academically UNPROVEN as of 2026-05. claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) (2023) and
+//   RT-SC is academically UNPROVEN as of 2026-05. CSH (2023) and
 //   subsequent candidates have not been independently replicated.
 //   This v1.0.0 CLI dispatcher is a PLACEHOLDER — no working empirical
 //   sandbox; verbs print spec excerpt + falsifier preregister only.
@@ -80,7 +80,7 @@ fn _file_exists(p: str) -> bool {
 
 fn _print_caveats() {
     println("")
-    println("  1. RT-SC is academically UNPROVEN (claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) etc. unsettled). v1.0.0 ships")
+    println("  1. RT-SC is academically UNPROVEN (CSH etc. unsettled). v1.0.0 ships")
     println("     spec + falsifier preregister only — no working empirical sandbox.")
     println("  2. CLI dispatcher is PLACEHOLDER TBD; verbs print spec excerpt only.")
     println("  3. n=6 invariant lattice (σ·τ=48T Hc2, φ=2 Cooper pair, Tc=300K) is a")
@@ -304,25 +304,25 @@ fn cmd_verify(a: [str]) {
         "verify/calc_bcs.hexa",
         "verify/calc_mcmillan.hexa",
         "verify/calc_hc2_48t.hexa",
-        "verify/calc_lk99.hexa",
+        "verify/calc_csh.hexa",
         "verify/numerics_bcs.hexa",
         "verify/numerics_mcmillan.hexa",
         "verify/numerics_hc2_48t.hexa",
-        "verify/numerics_lk99.hexa",
+        "verify/numerics_csh.hexa",
         "verify/numerics_bcs_parity.hexa",
         "verify/numerics_mcmillan_parity.hexa",
         "verify/numerics_hc2_48t_parity.hexa",
-        "verify/numerics_lk99_parity.hexa",
+        "verify/numerics_csh_parity.hexa",
         "verify/numerics_lattice_arithmetic.hexa",
         "verify/numerics_cross_pillar.hexa",
         "verify/numerics_bcs_solver.hexa",
         "verify/numerics_mcmillan_solver.hexa",
         "verify/numerics_hc2_48t_solver.hexa",
-        "verify/numerics_lk99_solver.hexa",
-        "verify/numerics_lk99_dft.hexa",
+        "verify/numerics_csh_solver.hexa",
+        "verify/numerics_csh_dft.hexa",
         "verify/numerics_tdgl_vortex.hexa",
         "verify/numerics_whh_full.hexa",
-        "verify/empirical_lk99_arxiv.hexa",
+        "verify/empirical_csh_arxiv.hexa",
         "verify/empirical_mcmillan_arxiv.hexa",
         "verify/empirical_hc2_high_field_arxiv.hexa",
         "verify/empirical_bcs_cooper_arxiv.hexa",
@@ -332,7 +332,7 @@ fn cmd_verify(a: [str]) {
         "verify/lint_numerics.hexa",
         "verify/saturation_check.hexa",
     ]
-    let names: [str] = ["lattice", "cross-doc", "calc-bcs", "calc-mcmillan", "calc-hc2-48t", "calc-lk99", "numerics-bcs", "numerics-mcmillan", "numerics-hc2-48t", "numerics-lk99", "numerics-bcs-parity", "numerics-mcmillan-parity", "numerics-hc2-48t-parity", "numerics-lk99-parity", "numerics-lattice-arithmetic", "numerics-cross-pillar", "numerics-bcs-solver", "numerics-mcmillan-solver", "numerics-hc2-48t-solver", "numerics-lk99-solver", "numerics-lk99-dft", "numerics-tdgl-vortex", "numerics-whh-full", "empirical-lk99", "empirical-mcmillan", "empirical-hc2", "empirical-bcs-cooper", "empirical-abrikosov", "empirical-specific-heat", "falsifier", "lint-numerics", "saturation"]
+    let names: [str] = ["lattice", "cross-doc", "calc-bcs", "calc-mcmillan", "calc-hc2-48t", "calc-csh", "numerics-bcs", "numerics-mcmillan", "numerics-hc2-48t", "numerics-csh", "numerics-bcs-parity", "numerics-mcmillan-parity", "numerics-hc2-48t-parity", "numerics-csh-parity", "numerics-lattice-arithmetic", "numerics-cross-pillar", "numerics-bcs-solver", "numerics-mcmillan-solver", "numerics-hc2-48t-solver", "numerics-csh-solver", "numerics-csh-dft", "numerics-tdgl-vortex", "numerics-whh-full", "empirical-csh", "empirical-mcmillan", "empirical-hc2", "empirical-bcs-cooper", "empirical-abrikosov", "empirical-specific-heat", "falsifier", "lint-numerics", "saturation"]
     let mut passed = 0
     let mut failed = 0
     let mut i = 0
@@ -445,7 +445,7 @@ fn cmd_help() {
     println("env:")
     println("  HEXA_RTSC_ROOT  override repo root (default: inferred from $0)")
     println("")
-    println("HONEST STATUS: RT-SC is academically unproven (claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) etc. unsettled).")
+    println("HONEST STATUS: RT-SC is academically unproven (CSH etc. unsettled).")
     println("  v1.0.0 ships spec + falsifier preregister only — CLI dispatcher is")
     println("  PLACEHOLDER. Working .hexa empirical sandbox is TBD.")
     println("")

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  Cached arXiv API fixture for hexa-rtsc/verify/empirical_csh_arxiv.hexa
+  F-RTSC-1 T3 anchor (literature-existence corpus probe).
+
+  Query used to generate this fixture (cached 2026-05-22 post-scrub):
+    search_query = all:carbonaceous+sulfur+hydride
+                   OR all:hydride+superconductor
+                   OR all:H3S+superconductor
+    max_results = 3
+
+  Only field consumed by parse_total() in the verifier is
+  <opensearch:totalResults> — the per-entry article payloads are not
+  asserted-against. The previous fixture (prior RT-SC query corpus)
+  was anonymized in the 2026-05-22 aggressive scrub and replaced with
+  this CSH / hydride-family corpus snapshot.
+-->
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/csh-hydride-supercon-cached-2026-05-22</id>
+  <title>arXiv Query: search_query=all:carbonaceous+sulfur+hydride+OR+all:hydride+superconductor+OR+all:H3S+superconductor&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-05-22T00:00:00Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:carbonaceous+sulfur+hydride+OR+all:hydride+superconductor+OR+all:H3S+superconductor&amp;start=0&amp;max_results=3" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>18750</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2010.07320</id>
+    <title>Room-temperature superconductivity in a carbonaceous sulfur hydride (cited as canonical CSH retracted-RT-SC anchor)</title>
+    <updated>2020-10-14T18:00:00Z</updated>
+    <summary>Reference entry retained as canonical F-RTSC-1 negative anchor: Snider et al. Nature 586:373 (2020), retracted Nature 610:804 (2022). See Hirsch + Marsiglio (2022) for magnetic-susceptibility re-analysis driving retraction.</summary>
+    <category term="cond-mat.supr-con" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-10-14T18:00:00Z</published>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2110.07408</id>
+    <title>Nonstandard superconductivity or no superconductivity in hydrides under high pressure (Hirsch + Marsiglio retraction-driving critique)</title>
+    <updated>2021-08-31T00:00:00Z</updated>
+    <summary>Hirsch + Marsiglio analysis of the Snider 2020 CSH magnetic-susceptibility background-subtraction. This critique drove the 2022 retraction.</summary>
+    <category term="cond-mat.supr-con" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-08-31T00:00:00Z</published>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1412.0460</id>
+    <title>Conventional superconductivity at 203 K at high pressures in the sulfur hydride system (H3S confirmed reference anchor)</title>
+    <updated>2015-08-17T00:00:00Z</updated>
+    <summary>Drozdov et al. Nature 525:73 (2015). Confirmed high-pressure hydride SC at Tc=203 K @ 155 GPa. Reference positive anchor for the hydride superconductor family (distinct from CSH retraction trajectory).</summary>
+    <category term="cond-mat.supr-con" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2015-08-17T00:00:00Z</published>
+  </entry>
+</feed>

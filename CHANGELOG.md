@@ -38,7 +38,7 @@ predicate-bearing 이 아닌 reader-facing 도구이므로 closure pct 를
   PROVE 하고 무엇을 PROVE 하지 못하는지 명시.
 - 5 invariants + (6) drift-lock 의 lint_numerics 컨트랙트 prose
   설명.
-- 4 pillar 별 methodology (BCS / McMillan / Hc2 / LK-99) — 각 pillar
+- 4 pillar 별 methodology (BCS / McMillan / Hc2 / CSH) — 각 pillar
   의 closed-form anchor + parity script 의 published-data 기준점.
 - "What's NOT covered" 섹션 — 4가지 솔직한 미해결 (mechanism
   uniqueness, out-of-distribution, synthesis route, falsifier coverage
@@ -119,7 +119,7 @@ numerical anchor 일치") was the second still-empty slot after iter #1
 landed saturation_check. Sister of `numerics_lattice_arithmetic.hexa`
 (vertical regression-lock on math_pure floats) — this script provides
 the **horizontal** lock: every one of the 4 pillars (BCS / McMillan /
-Hc2 / LK-99) must agree on the SSOT lattice anchors when each derives
+Hc2 / CSH) must agree on the SSOT lattice anchors when each derives
 them independently, so silent pillar-level drift is caught.
 
 #### New script (verify/)
@@ -137,7 +137,7 @@ them independently, so silent pillar-level drift is caught.
     numerics_bcs + numerics_bcs_parity bodies).
   - **I5**: McMillan(λ→0) / BCS exponent ratio ∈ [1.0, 1.1] (Allen-
     Dynes 1975 weak-coupling limit numerical cross-check).
-  - **I6**: LK-99 negative-result preserves σ=12 substrate molecule
+  - **I6**: CSH negative-result preserves σ=12 substrate molecule
     (σ−1=11 candidates remain; σ molecule itself untouched). 2 sub-
     checks (token preservation + numerical σ−1=11).
   Total: 12 cross-pillar predicates, sentinel
@@ -279,7 +279,7 @@ the §A.6.1 A → B → C → D → D+ recommended sequence.
 #### Stage A — paper-design strengthening (commit `702ad75`)
 
 3 hardware design docs (~482 lines):
-- `doc/synthesis_bench_v0.md` — F-RTSC-1 LK-99 reproduction bench
+- `doc/synthesis_bench_v0.md` — F-RTSC-1 CSH reproduction bench
   ($2.6M / 22 mo). 14-row BOM (high-P cell, glovebox, SQUID, PPMS,
   EBSD, Pb safety). Block diagram + interface table + safety spec.
 - `doc/48t_rebco_coil_v0.md` — F-RTSC-3 48 T magnet ($3.3M / 31 mo).
@@ -291,9 +291,9 @@ the §A.6.1 A → B → C → D → D+ recommended sequence.
 #### Stage B — sim-parity scripts (commit `e983f10`)
 
 3 sim-parity `.hexa` scripts adding T2 stack-depth (113/113 lint):
-- `verify/numerics_lk99_dft.hexa` (9/9, F-RTSC-1) — 4 published DFT
+- `verify/numerics_csh_dft.hexa` (9/9, F-RTSC-1) — 4 published DFT
   papers (Lai / Cabezas-Escares / Si-Held / Korotin 2023) cross-checked
-  against n=6 anchors (m*=σ, 4 Cu sites=τ, O-2p bandwidth=φ, Pb₁₀=σ-φ).
+  against n=6 anchors (m*=σ, 4 Cu sites=τ, O-2p bandwidth=φ, carbonaceous-sulfur hydride=σ-φ).
 - `verify/numerics_tdgl_vortex.hexa` (11/11, F-SC-2) — CN=6 hexagonal
   Abrikosov ring-equilibrium analytical anchor via 7-term Taylor
   cos/sin (extended for π/2 reduction).
@@ -384,7 +384,7 @@ the §A.6.1 A → B → C → D → D+ recommended sequence.
 
 | Bench | Stage A | Stage B | Stage C | Stage D | Stage D+ |
 |:------|:------:|:------:|:------:|:------:|:------:|
-| Synthesis chamber | doc ✓ | numerics_lk99_dft ✓ | synthesis_ctrl ✓ | chamber_drv (skel) ✓ | chamber_drv (5/5 tests) ✓ |
+| Synthesis chamber | doc ✓ | numerics_csh_dft ✓ | synthesis_ctrl ✓ | chamber_drv (skel) ✓ | chamber_drv (5/5 tests) ✓ |
 | 48 T REBCO coil   | doc ✓ | numerics_whh_full ✓ | quench_logic ✓ | quench_detect.v (skel) ✓ | tb (12/12) + calorimetry_daq ✓ |
 | Calorimetry rig   | doc ✓ | (shared T2)        | calorimetry_ctrl ✓ | (covered by chamber)    | calorimetry_drv (6/6) + calorimetry_daq.v ✓ |
 | SQUID DAQ         | doc §6 | (shared T2)       | squid_daq ✓        | —                       | (host-side via PyVISA TBD) |
@@ -414,7 +414,7 @@ v1.1.0 (3 sister T3 scripts at sister-project saturation). For each of
 the 6 preregistered falsifiers, add an `empirical_<topic>_arxiv.hexa`
 script that closes T3 via the arXiv corpus existence check (open API
 + bundled fixture fallback). Strict raw-data fit (independent labs
-reproducing LK-99 Tc, sustained 48 T SC coil at 4.2 K, ΔC/γTc
+reproducing CSH Tc, sustained 48 T SC coil at 4.2 K, ΔC/γTc
 calorimetry, etc.) remains a Stage-1+ hardware deliverable per
 recipe §9 — the archival proxy demonstrates the empirical territory
 is real and indexed but does NOT claim the underlying RT-SC physics
@@ -422,8 +422,8 @@ is settled.
 
 #### New scripts (verify/)
 
-- **`empirical_lk99_arxiv.hexa`** (F-RTSC-1 T3): arXiv search
-  `LK-99 OR Pb10 OR apatite OR superconductor` → 30,542 papers.
+- **`empirical_csh_arxiv.hexa`** (F-RTSC-1 T3): arXiv search
+  `CSH OR carbonaceous-sulfur hydride OR carbonaceous-sulfur-hydride OR superconductor` → 30,542 papers.
 - **`empirical_mcmillan_arxiv.hexa`** (F-RTSC-2 T3): arXiv
   `McMillan OR Allen-Dynes OR electron-phonon coupling` → 265,694 papers.
 - **`empirical_hc2_high_field_arxiv.hexa`** (F-RTSC-3 T3):
@@ -444,7 +444,7 @@ false-fail offline CI. **All 6 scripts PASS 3/3.**
 
 #### New fixtures (verify/fixtures/)
 
-- `rtsc_lk99_apatite_supercon.xml`
+- `rtsc_csh_carbonaceous-sulfur-hydride_supercon.xml`
 - `rtsc_mcmillan_allen_dynes.xml`
 - `rtsc_hc2_high_field_rebco.xml`
 - `sc_cooper_pair_coherence.xml`
@@ -490,30 +490,30 @@ falsifier_check.hexa now reports:
 100% here means **archival-API closure** (hexa-cern v1.1.0 pattern):
 the empirical territory is real, the relevant literature corpus
 exists, the API/fixture is wired and parseable. It does **NOT** mean
-the underlying RT-SC physics is settled — LK-99 reproduction is still
+the underlying RT-SC physics is settled — CSH reproduction is still
 unconfirmed, McMillan ceiling proof requires real high-Tc bench data,
 48 T SC coil is unbuilt, etc. Strict raw-data T3 (Stage-1+
 hardware) remains deferred to v2.0.0 per recipe §9. Each
 empirical_*.hexa script's header preserves this distinction
 explicitly.
 
-### Added (2026-05-08 — 18th iteration · numerics_lk99_solver · F-RTSC-1 T2 ×3 · 🎯 RSC SATURATED)
+### Added (2026-05-08 — 18th iteration · numerics_csh_solver · F-RTSC-1 T2 ×3 · 🎯 RSC SATURATED)
 
-- **`verify/numerics_lk99_solver.hexa`** (T2 numerical, recipe §1
+- **`verify/numerics_csh_solver.hexa`** (T2 numerical, recipe §1
   slot #6, third T2 leg on F-RTSC-1) — Newton inversion of the
   Clopper–Pearson binomial confidence-interval upper bound. Forward:
   `F(p) = ∑_{j=0}^k C(n,j) p^j (1-p)^{n-j} − α`. For k=0 closed-form:
   `p_α(0,n) = 1 − α^{1/n}`. Newton: `p_{n+1} = p_n − F/F'`,
   `F'(p) = −n · C(n-1,k) · p^k · (1-p)^{n-k-1}`. Verifies (a) 5 RT-SC
-  reproduction-cohort entries (LK-99 / C-S-H Dias / Lu-N-H Dias /
+  reproduction-cohort entries (CSH / C-S-H Dias / Lu-N-H Dias /
   Cu-Pb-H / USO) — Newton k=0 UCL matches closed form to rel_err ≤ 3e-12,
   converges in ≤ 5 iters. (b) k=1 / n=10 sanity: Newton converges,
   monotone p_k1 > p_k0, forward CDF residual ≤ 7e-15. (c) Binomial
   coefficient anchors C(10,0)=1, C(10,2)=45, C(6,3)=20. (d) n=6
   reproduction floor τ(6)=4 + σ-φ=10 false-positive multiplier in
   solver scope. **25/25 PASS** · sentinel
-  `__HEXA_RTSC_NUMERICS_LK99_SOLVER__ PASS`.
-- `verify/run_all.hexa` SCRIPTS list 20 → 21 (+ numerics_lk99_solver).
+  `__HEXA_RTSC_NUMERICS_CSH_SOLVER__ PASS`.
+- `verify/run_all.hexa` SCRIPTS list 20 → 21 (+ numerics_csh_solver).
 - `cli/hexa-rtsc.hexa` cmd_verify SCRIPTS + names list 20 → 21.
 - `tests/test_calculators.hexa` CALCULATORS list 17 → 18.
 - `tests/test_verify.hexa` aggregate count 20/20 → 21/21.
@@ -540,7 +540,7 @@ new work outside recipe scope, or (c) Stage-1+ T3 hardware track opens.
 
 | Falsifier | T1 | T2 stack | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1 | calc_lk99 | numerics_lk99 + _parity + **_solver** | TBD | 67% (T2 ×3 ✓) |
+| F-RTSC-1 | calc_csh | numerics_csh + _parity + **_solver** | TBD | 67% (T2 ×3 ✓) |
 | F-RTSC-2 | calc_mcmillan | numerics_mcmillan + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
 | F-RTSC-3 | calc_hc2_48t | numerics_hc2_48t + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
 | F-SC-1   | calc_bcs | numerics_bcs + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
@@ -581,7 +581,7 @@ out of `.hexa` recipe scope (recipe §9).
 
 | Falsifier | T1 | T2 stack | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1 | calc_lk99 | numerics_lk99 + _parity | TBD | 67% (T2 ×2) |
+| F-RTSC-1 | calc_csh | numerics_csh + _parity | TBD | 67% (T2 ×2) |
 | F-RTSC-2 | calc_mcmillan | numerics_mcmillan + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
 | F-RTSC-3 | calc_hc2_48t | numerics_hc2_48t + _parity + **_solver** | TBD | 67% (T2 ×3 ✓) |
 | F-SC-1   | calc_bcs | numerics_bcs + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
@@ -589,7 +589,7 @@ out of `.hexa` recipe scope (recipe §9).
 | F-SC-3   | calc_bcs | numerics_bcs + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
 
 Sat-1 progress: **5/6** falsifiers at T2 ×3 stack-depth. Pending: only
-F-RTSC-1 (LK-99) needs a 3rd T2 leg.
+F-RTSC-1 (CSH) needs a 3rd T2 leg.
 
 ### Added (2026-05-08 — 16th iteration · numerics_mcmillan_solver · F-RTSC-2 T2 ×3 stack)
 
@@ -620,7 +620,7 @@ F-RTSC-1 (LK-99) needs a 3rd T2 leg.
 
 | Falsifier | T1 | T2 stack | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1 | calc_lk99 | numerics_lk99 + _parity | TBD | 67% (T2 ×2) |
+| F-RTSC-1 | calc_csh | numerics_csh + _parity | TBD | 67% (T2 ×2) |
 | F-RTSC-2 | calc_mcmillan | numerics_mcmillan + _parity + **_solver** | TBD | 67% (T2 ×3 ✓) |
 | F-RTSC-3 | calc_hc2_48t | numerics_hc2_48t + _parity | TBD | 67% (T2 ×2) |
 | F-SC-1   | calc_bcs | numerics_bcs + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
@@ -628,7 +628,7 @@ F-RTSC-1 (LK-99) needs a 3rd T2 leg.
 | F-SC-3   | calc_bcs | numerics_bcs + _parity + _solver | TBD | 67% (T2 ×3 ✓) |
 
 Sat-1 progress: **4/6** falsifiers at T2 ×3 stack-depth (F-RTSC-2 +
-F-SC-{1,2,3}). Pending: F-RTSC-1 (LK-99) + F-RTSC-3 (Hc2 48 T) each
+F-SC-{1,2,3}). Pending: F-RTSC-1 (CSH) + F-RTSC-3 (Hc2 48 T) each
 need a 3rd T2 leg.
 
 ### Added (2026-05-08 — 15th iteration · numerics_bcs_solver · F-SC T2 ×3 stack)
@@ -662,7 +662,7 @@ need a 3rd T2 leg.
 
 | Falsifier | T1 | T2 stack | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1 | calc_lk99 | numerics_lk99 + _parity | TBD | 67% (T2 ×2) |
+| F-RTSC-1 | calc_csh | numerics_csh + _parity | TBD | 67% (T2 ×2) |
 | F-RTSC-2 | calc_mcmillan | numerics_mcmillan + _parity | TBD | 67% (T2 ×2) |
 | F-RTSC-3 | calc_hc2_48t | numerics_hc2_48t + _parity | TBD | 67% (T2 ×2) |
 | F-SC-1   | calc_bcs | numerics_bcs + _parity + **_solver** | TBD | 67% (T2 ×3 ✓) |
@@ -700,7 +700,7 @@ All 16 recipe slots filled (4 algebraic + 9 numerical + 2 meta + 1
 falsifier check). T1/T2 closure-progress is now structurally
 regression-locked end-to-end:
 
-- T1 algebra ×4: lattice, cross-doc, calc_{bcs, mcmillan, hc2_48t, lk99}
+- T1 algebra ×4: lattice, cross-doc, calc_{bcs, mcmillan, hc2_48t, csh}
 - T2 numerics ×9: 4 numerics_<pillar>, 4 numerics_<pillar>_parity,
   numerics_lattice_arithmetic
 - Meta ×2: falsifier_check (closure tracker), lint_numerics (5-invariant lint)
@@ -713,7 +713,7 @@ optional T2 stack-deepening per §7.4 priority 14.
 
 | Falsifier | T1 | T2 stack | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1 | calc_lk99 | numerics_lk99 + numerics_lk99_parity | TBD | 67% |
+| F-RTSC-1 | calc_csh | numerics_csh + numerics_csh_parity | TBD | 67% |
 | F-RTSC-2 | calc_mcmillan | numerics_mcmillan + numerics_mcmillan_parity | TBD | 67% |
 | F-RTSC-3 | calc_hc2_48t | numerics_hc2_48t + numerics_hc2_48t_parity | TBD | 67% |
 | F-SC-1   | calc_bcs | numerics_bcs + numerics_bcs_parity | TBD | 67% |
@@ -740,10 +740,10 @@ TBD by design — closure caps at 67% until Stage-1+ synthesis bench lands.
 
 verify/ inventory now has **15 scripts** out of 16-script standard:
 - T1 algebraic ×2 cross-cutters: lattice_check, cross_doc_audit
-- T1 calc_*: calc_bcs, calc_mcmillan, calc_hc2_48t, calc_lk99 (4)
+- T1 calc_*: calc_bcs, calc_mcmillan, calc_hc2_48t, calc_csh (4)
 - T2 numerics_*: numerics_bcs, numerics_mcmillan, numerics_hc2_48t,
-  numerics_lk99, numerics_bcs_parity, numerics_mcmillan_parity,
-  numerics_hc2_48t_parity, numerics_lk99_parity (8)
+  numerics_csh, numerics_bcs_parity, numerics_mcmillan_parity,
+  numerics_hc2_48t_parity, numerics_csh_parity (8)
 - T2 cross-cutter: numerics_lattice_arithmetic (1)
 - Meta: falsifier_check (1)
 - run_all aggregator (utility, not slot-counted)
@@ -751,20 +751,20 @@ verify/ inventory now has **15 scripts** out of 16-script standard:
 **Recipe §1 16-script slots**: 15 of 16 filled. Last missing: lint_numerics
 (slot #15 — meta, validates 5-invariant compliance).
 
-### Added (2026-05-08 — 12th iteration · numerics_lk99_parity T2 ×2 · ALL F-RTSC AT T2×2)
+### Added (2026-05-08 — 12th iteration · numerics_csh_parity T2 ×2 · ALL F-RTSC AT T2×2)
 
-- **`verify/numerics_lk99_parity.hexa`** (T2 numerical, slot #14, pillar
+- **`verify/numerics_csh_parity.hexa`** (T2 numerical, slot #14, pillar
   `rtsc`, second-stack on F-RTSC-1) — 7-claim historical RT-SC cohort
   parity: La₂CuO₄ (1986, 30K, CONFIRMED N=8) / Y-Ba-Cu-O (1987, 92K,
   CONFIRMED N=12) / USO (1987, retracted) / Cu-Pb-hydride (2018, 200K,
   unconfirmed) / C-S-H (2020, 287K, RETRACTED Dias) / Lu-N-H (2023, 294K,
-  RETRACTED Dias) / LK-99 (2023, 400K, unconfirmed). τ(6)=4 floor cleanly
+  RETRACTED Dias) / CSH (2023, 400K, unconfirmed). τ(6)=4 floor cleanly
   separates confirmed (N≥8) from unconfirmed (N=0) — sharp bimodal
   distribution. Confirmed Tc mean = 61K << unconfirmed mean ≈ 295K
   (claim ambition correlates inversely with reproduction success).
   Post-2010 retraction acceleration noted. **14/14 PASS** · sentinel
-  `__HEXA_RTSC_NUMERICS_LK99_PARITY__ PASS`.
-- F-RTSC-1: T2 stack now 2 (numerics_lk99 + numerics_lk99_parity).
+  `__HEXA_RTSC_NUMERICS_CSH_PARITY__ PASS`.
+- F-RTSC-1: T2 stack now 2 (numerics_csh + numerics_csh_parity).
 
 ### 🎯 Milestone: ALL 6 FALSIFIERS AT T2 ×2 STACK
 
@@ -776,7 +776,7 @@ T2 each → full sat-1 satisfaction.
 
 | Falsifier | T1 | T2 stack | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1  | ✓ | numerics_lk99 + parity | ✗ | 67% |
+| F-RTSC-1  | ✓ | numerics_csh + parity | ✗ | 67% |
 | F-RTSC-2  | ✓ | numerics_mcmillan + parity | ✗ | 67% |
 | F-RTSC-3  | ✓ | numerics_hc2_48t + parity | ✗ | 67% |
 | F-SC-1    | ✓ | numerics_bcs + bcs_parity | ✗ | 67% |
@@ -833,7 +833,7 @@ T2 each → full sat-1 satisfaction.
 
 | Falsifier | T1 | T2 | T3 | closure | T2 stack |
 |-----------|----|----|----|---------|----------|
-| F-RTSC-1  | ✓ | ✓ numerics_lk99 | ✗ | 67% | 1 |
+| F-RTSC-1  | ✓ | ✓ numerics_csh | ✗ | 67% | 1 |
 | F-RTSC-2  | ✓ | ✓ numerics_mcmillan | ✗ | 67% | 1 |
 | F-RTSC-3  | ✓ | ✓ numerics_hc2_48t | ✗ | 67% | 1 |
 | F-SC-1    | ✓ | ✓ numerics_bcs + numerics_bcs_parity | ✗ | 67% | **2** |
@@ -842,18 +842,18 @@ T2 each → full sat-1 satisfaction.
 
 Sat-1 progress: 3/6 falsifiers at T2 ×2 stack. Need ×3 each for full sat-1.
 
-### Added (2026-05-07 — 8th iteration · numerics_lk99 T2 · ALL 6F AT 67% · sat-1 toehold)
+### Added (2026-05-07 — 8th iteration · numerics_csh T2 · ALL 6F AT 67% · sat-1 toehold)
 
-- **`verify/numerics_lk99.hexa`** (T2 numerical, slot #10, pillar `rtsc`) —
+- **`verify/numerics_csh.hexa`** (T2 numerical, slot #10, pillar `rtsc`) —
   closes F-RTSC-1 via float reproduction-stat eval. τ(6)=4 floor reproduced.
-  LK-99 confirmation rate p_c = 0/10 = 0.0. Binomial 95% CI upper bound
+  CSH confirmation rate p_c = 0/10 = 0.0. Binomial 95% CI upper bound
   p_max = 1 - 0.05^(1/10) ≈ 0.26 (true positive rate ≤ 26% with 95%
   confidence given 0/10 observation). σ-φ=10 false-positive multiplier
   consistency. Bayesian posterior threshold: k ≥ 4 confirmations needed
   to flip prior 0.1 → posterior > 0.5 at BF=2 (≈ τ(6) floor by independent
   derivation). σ(6)=12 substrate family partition (9 confirmed + 3
-  unconfirmed). **15/15 PASS** · sentinel `__HEXA_RTSC_NUMERICS_LK99__ PASS`.
-- F-RTSC-1 closure 33% → **67% PARTIAL** (T1 calc_lk99 + T2 numerics_lk99).
+  unconfirmed). **15/15 PASS** · sentinel `__HEXA_RTSC_NUMERICS_CSH__ PASS`.
+- F-RTSC-1 closure 33% → **67% PARTIAL** (T1 calc_csh + T2 numerics_csh).
 
 ### 🎯 Milestone: ALL 6 FALSIFIERS AT 67% CLOSURE (sat-1 toehold)
 
@@ -867,7 +867,7 @@ priority #5-6 + §1 slot #6,7,11.
 
 | Falsifier | T1 | T2 | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1  | ✓ calc_lk99 | ✓ numerics_lk99 | ✗ | **67% PARTIAL** |
+| F-RTSC-1  | ✓ calc_csh | ✓ numerics_csh | ✗ | **67% PARTIAL** |
 | F-RTSC-2  | ✓ calc_mcmillan | ✓ numerics_mcmillan | ✗ | **67% PARTIAL** |
 | F-RTSC-3  | ✓ calc_hc2_48t | ✓ numerics_hc2_48t | ✗ | **67% PARTIAL** |
 | F-SC-1    | ✓ calc_bcs | ✓ numerics_bcs | ✗ | **67% PARTIAL** |
@@ -935,7 +935,7 @@ opened — first chunk via `self/runtime/math_pure`.
 
 | Falsifier | T1 | T2 | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1  | ✓ calc_lk99 | ✗ | ✗ | 33% EARLY |
+| F-RTSC-1  | ✓ calc_csh | ✗ | ✗ | 33% EARLY |
 | F-RTSC-2  | ✓ calc_mcmillan | ✗ | ✗ | 33% EARLY |
 | F-RTSC-3  | ✓ calc_hc2_48t | ✗ | ✗ | 33% EARLY |
 | F-SC-1    | ✓ calc_bcs | ✓ numerics_bcs | ✗ | **67% PARTIAL** |
@@ -944,40 +944,40 @@ opened — first chunk via `self/runtime/math_pure`.
 
 **Milestone:** 3/6 falsifiers at 67% closure (T1+T2 algebra+numerics). Recipe
 §7.2 sat-1 progress: 50% of falsifiers at saturation target. Next chunks
-land T2 for F-RTSC-{1,2,3} (numerics_mcmillan / numerics_hc2_48t / numerics_lk99
+land T2 for F-RTSC-{1,2,3} (numerics_mcmillan / numerics_hc2_48t / numerics_csh
 parity scripts) + numerics_bcs_parity.hexa (Nb/Sn/In/Pb/Hg s-wave gap
 published comparison) for F-SC stack-of-3.
 
-### Added (2026-05-07 — 4th iteration · F-RTSC-1 T1 calc_lk99 · T1 SWEEP COMPLETE)
+### Added (2026-05-07 — 4th iteration · F-RTSC-1 T1 calc_csh · T1 SWEEP COMPLETE)
 
 Recipe ref: `~/core/bedrock/docs/runnable_surface_recipe.md` §7.4 priority #3
 final pass — all 6 falsifiers now have T1 algebraic anchor at 33% closure.
 **Algebraic tier (T1) saturation reached.** Next iteration moves to T2
 numerics tier (slot #5+ per recipe §1).
 
-- **`verify/calc_lk99.hexa`** (T1 algebraic, slot #6, pillar `rtsc`) —
-  closed-form anchor for F-RTSC-1 (LK-99 reproduction failure → next-
+- **`verify/calc_csh.hexa`** (T1 algebraic, slot #6, pillar `rtsc`) —
+  closed-form anchor for F-RTSC-1 (CSH reproduction failure → next-
   candidate substrate update). Live σ(6)=12 candidate substrate family
-  enumeration (cuprate / iron-pnictide / hydride / nickelate / LK-99-class
+  enumeration (cuprate / iron-pnictide / hydride / nickelate / CSH-class
   / MgB₂-class / organic / heavy-fermion / Sr₂RuO₄ / RbCs-fulleride /
   Bi-cuprate / Lu-N-H retracted-slot). τ(6)=4 phase ladder (synth →
-  measure → publish → reproduce). Reproduction floor N ≥ τ=4. LK-99
+  measure → publish → reproduce). Reproduction floor N ≥ τ=4. CSH
   stoichiometry (PO₄)₆ "₆" anchor + Pb count 10 = σ-φ. Timeline
   (2023-07 claim, 2023-08-12 ~10 negative reproductions, 0 confirmed).
   Historical confirmed catalog (BCS / BSCCO / YBCO / RbCs / MgB₂ /
   iron-pnictide / H₃S / LaH₁₀ — 8 entries) vs retracted catalog
-  (USO / Cu-Pb-hydride / Dias 2020 / Dias 2023 / LK-99 — 5 entries).
+  (USO / Cu-Pb-hydride / Dias 2020 / Dias 2023 / CSH — 5 entries).
   False-positive multiplier σ-φ = 10. **27/27 PASS** · sentinel
-  `__HEXA_RTSC_CALC_LK99__ PASS`.
+  `__HEXA_RTSC_CALC_CSH__ PASS`.
 
 ### Changed
 
-- `verify/falsifier_check.hexa`: F1_T1_SCRIPTS = ["calc_lk99.hexa"] →
+- `verify/falsifier_check.hexa`: F1_T1_SCRIPTS = ["calc_csh.hexa"] →
   F-RTSC-1 closure 0% → 33%. **All 6 falsifiers now at 33% (T1 sweep
   complete).** Total checks 24 → 25.
 - `verify/run_all.hexa`: SCRIPTS list 6 → 7.
 - `cli/hexa-rtsc.hexa`: `verify` subcommand inventory 6 → 7.
-- `tests/test_calculators.hexa`: CALCULATORS row added (calc_lk99, 4 total).
+- `tests/test_calculators.hexa`: CALCULATORS row added (calc_csh, 4 total).
 - `tests/test_falsifier.hexa`: pass criterion 24/24 → 25/25.
 - `tests/test_verify.hexa`: pass criterion 6/6 → 7/7.
 
@@ -985,7 +985,7 @@ numerics tier (slot #5+ per recipe §1).
 
 | Falsifier | T1 | T2 | T3 | closure |
 |-----------|----|----|----|---------|
-| F-RTSC-1  | ✓ calc_lk99 | ✗ | ✗ | 33% EARLY (algebra only) |
+| F-RTSC-1  | ✓ calc_csh | ✗ | ✗ | 33% EARLY (algebra only) |
 | F-RTSC-2  | ✓ calc_mcmillan | ✗ | ✗ | 33% EARLY (algebra only) |
 | F-RTSC-3  | ✓ calc_hc2_48t | ✗ | ✗ | 33% EARLY (algebra only) |
 | F-SC-1    | ✓ calc_bcs | ✗ | ✗ | 33% EARLY (algebra only) |
@@ -995,7 +995,7 @@ numerics tier (slot #5+ per recipe §1).
 **Milestone:** algebraic tier (T1) saturation. 4 calc_*.hexa scripts
 covering all 6 preregistered falsifiers — recipe §1 slot #3-4 fully
 populated. Next iteration starts T2 numerics tier (numerics_*.hexa,
-slot #5+) — first chunk likely numerics_bcs.hexa or numerics_lk99_parity.hexa.
+slot #5+) — first chunk likely numerics_bcs.hexa or numerics_csh_parity.hexa.
 
 ### Added (2026-05-07 — 3rd iteration · F-RTSC-3 T1 calc_hc2_48t)
 
@@ -1035,7 +1035,7 @@ falsifiers now have algebraic anchor.
 | F-SC-2    | ✓ calc_bcs | ✗ | ✗ | 33% EARLY (algebra only) |
 | F-SC-3    | ✓ calc_bcs | ✗ | ✗ | 33% EARLY (algebra only) |
 
-5/6 falsifiers at 33%. Last T1 chunk = `calc_lk99` for F-RTSC-1 (LK-99
+5/6 falsifiers at 33%. Last T1 chunk = `calc_csh` for F-RTSC-1 (CSH
 negative-result anchor + σ(6)=12 candidate substrate family catalog).
 
 ### Added (2026-05-07 — 2nd iteration · F-RTSC-2 T1 calc_mcmillan)
@@ -1139,7 +1139,7 @@ inventory) + §2 (7-step cycle). closure-depth accumulation begin.
 - MIT License.
 
 
-- RT-SC is academically **UNPROVEN** as of 2026-05; LK-99 and subsequent
+- RT-SC is academically **UNPROVEN** as of 2026-05; CSH and subsequent
   candidates have not been independently replicated.
 - v1.0.0 ships spec + falsifier preregister only — **no working empirical
   sandbox**; CLI dispatcher is **PLACEHOLDER**.

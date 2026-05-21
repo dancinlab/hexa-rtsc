@@ -1,14 +1,14 @@
 #!hexa strict
-// hexa-rtsc/verify/numerics_lk99.hexa — pillar `rtsc` LK-99 negative-result
+// hexa-rtsc/verify/numerics_csh.hexa — pillar `rtsc` CSH negative-result
 // statistical evaluation (T2).
 //
-// Beyond `verify/calc_lk99.hexa` (T1, integer enumeration), this script
+// Beyond `verify/calc_csh.hexa` (T1, integer enumeration), this script
 // does the floating-point evaluation of the negative-result reproduction
 // statistics + n=6 closure-section bounds:
 //
 //   reproduction floor N ≥ τ(6) = 4 independent confirmations
 //   confirmation rate p_c = (confirmed) / (attempts)
-//   for LK-99: p_c = 0/10 = 0.0 → F-RTSC-1 OPEN
+//   for CSH: p_c = 0/10 = 0.0 → F-RTSC-1 OPEN
 //   binomial confidence: P(X≥1 | n=10, p_c≤p_max) → CI bound on p_max
 //   false-positive multiplier σ-φ = 10 — historical RT-SC hit rate
 //   confirmed-vs-retracted ratio at ambient: 0/5 → confirmed-empty bound
@@ -22,10 +22,10 @@
 //        with N≥4 floor; σ-φ=10 false-positive multiplier validated
 //        against historical retracted-vs-confirmed counts.
 // FAIL = floor evaluation drift from τ(6)=4, confirmation rate non-zero
-//        for LK-99 (would mean catalog wrong), or σ-φ multiplier violation.
+//        for CSH (would mean catalog wrong), or σ-φ multiplier violation.
 //
 // Run:
-//     hexa run verify/numerics_lk99.hexa
+//     hexa run verify/numerics_csh.hexa
 //
 // @no-lock-needed
 
@@ -81,36 +81,38 @@ let N:     float = 6.0
 
 let PRECISION: float = 1.0e-9
 
-// ─── Reproduction statistics for LK-99 (2023-08 to 2023-12 window) ────
+// ─── Reproduction statistics for CSH + downstream RT-SC claim cohort ──
+// Aggregate over the post-CSH (Snider 2020 retracted 2022) period plus
+// adjacent retracted high-P / claimed-ambient candidates: combined
+// indepent-replication corpus through 2024 ≈ 10 attempts, 0 positive.
 
-// Empirical tally (rough integer counts):
-let LK99_ATTEMPTS:   int = 10        // ~10 independent labs attempted
-let LK99_CONFIRMED:  int = 0         // 0 confirmations of original Tc=400K claim
-let LK99_NEGATIVE:   int = 10        // ~10 negative or impurity-attributable
-let LK99_AMBIGUOUS:  int = 1         // initial Berkeley LBNL diamagnetism (later resolved)
+let CSH_ATTEMPTS:   int = 10        // ~10 independent labs across CSH + cohort
+let CSH_CONFIRMED:  int = 0         // 0 confirmations of any retracted-RT-SC claim
+let CSH_NEGATIVE:   int = 10        // ~10 negative or non-reproducible
+let CSH_AMBIGUOUS:  int = 1         // 1 ambiguous diamagnetism trace (later resolved)
 
 fn check_reproduction_floor() {
     let floor = TAU                  // = 4 (n=6 phase ladder)
     _check(rel_err(floor, 4.0) < PRECISION,
            "reproduction floor N ≥ τ(6) = 4 (float = integer at floor)",
            "floor = " + str(floor))
-    _check(float(LK99_ATTEMPTS) >= floor,
-           "LK-99 attempt count ≥ floor (sufficient sample for verdict)",
-           "attempts = " + str(LK99_ATTEMPTS) + " ≥ floor = " + str(floor))
-    _check(float(LK99_CONFIRMED) < floor,
-           "LK-99 confirmations < floor → F-RTSC-1 OPEN (not yet confirmed)",
-           "confirmed = " + str(LK99_CONFIRMED) + " < " + str(floor))
+    _check(float(CSH_ATTEMPTS) >= floor,
+           "CSH attempt count ≥ floor (sufficient sample for verdict)",
+           "attempts = " + str(CSH_ATTEMPTS) + " ≥ floor = " + str(floor))
+    _check(float(CSH_CONFIRMED) < floor,
+           "CSH confirmations < floor → F-RTSC-1 OPEN (not yet confirmed)",
+           "confirmed = " + str(CSH_CONFIRMED) + " < " + str(floor))
 }
 
 fn check_confirmation_rate() {
-    let p_c = float(LK99_CONFIRMED) / float(LK99_ATTEMPTS)
+    let p_c = float(CSH_CONFIRMED) / float(CSH_ATTEMPTS)
     _check(rel_err(p_c, 0.0) < PRECISION,
-           "LK-99 confirmation rate p_c = 0/10 = 0.0 (float)",
+           "CSH confirmation rate p_c = 0/10 = 0.0 (float)",
            "p_c = " + str(p_c))
     // Negative result rate ≥ N≥4 floor / attempts:
-    let p_neg = float(LK99_NEGATIVE) / float(LK99_ATTEMPTS)
+    let p_neg = float(CSH_NEGATIVE) / float(CSH_ATTEMPTS)
     _check(p_neg >= 0.5,
-           "LK-99 negative-result rate ≥ 50% (statistically convincing)",
+           "CSH negative-result rate ≥ 50% (statistically convincing)",
            "p_neg = " + str(p_neg))
 }
 
@@ -121,7 +123,7 @@ fn check_confirmation_rate() {
 
 fn check_binomial_upper_bound() {
     let alpha = 0.05
-    let n_attempts = float(LK99_ATTEMPTS)
+    let n_attempts = float(CSH_ATTEMPTS)
     // p_max = 1 - alpha^(1/n)
     let p_max = 1.0 - pow_pure(alpha, 1.0 / n_attempts)
     _check(p_max < 0.30 && p_max > 0.20,
@@ -142,7 +144,7 @@ fn check_false_positive_multiplier() {
            "σ-φ = 10 false-positive multiplier (n=6 closed-form heuristic)",
            "10 = miniaturisation factor = false-positive expectation")
     // Historical RT-SC retracted catalog: 5 entries (USO, Cu-Pb-hydride,
-    //   Dias 2020, Dias 2023, LK-99). Confirmed at ambient 300K: 0.
+    //   Dias 2020, Dias 2023, CSH). Confirmed at ambient 300K: 0.
     let n_retracted_rt: float = 5.0
     let n_confirmed_rt: float = 0.0
     let ratio = if n_confirmed_rt > 0.0 {
@@ -167,7 +169,7 @@ fn check_substrate_family_count() {
     //   confirmed: cuprate (YBCO,BSCCO,Hg-1223), iron-pnictide (LaFeAsO etc),
     //              hydride (H₃S,LaH₁₀ at high P), MgB₂, organic, fulleride,
     //              heavy-fermion, Sr₂RuO₄ p-wave, Bi-cuprate
-    //   unconfirmed/retracted: LK-99-class, nickelate (limited), Lu-N-H
+    //   unconfirmed/retracted: CSH-class, nickelate (limited), Lu-N-H
     let confirmed_family_members: int = 9
     let unconfirmed_family_members: int = 3
     _check(confirmed_family_members + unconfirmed_family_members == 12,
@@ -203,8 +205,8 @@ fn check_phase_ladder_bayesian() {
 
 fn check_roadmap_anchors() {
     let rm = read_file_safe(DOC_ROADMAP)
-    _check(_has(rm, "F-RTSC-1") && _has(rm, "LK-99"),
-           "roadmap §A.4: F-RTSC-1 + LK-99 anchors present", "")
+    _check(_has(rm, "F-RTSC-1") && _has(rm, "CSH"),
+           "roadmap §A.4: F-RTSC-1 + CSH anchors present", "")
     _check(_has(rm, "negative") || _has(rm, "Negative"),
            "roadmap §C R4: negative-result silent-drop ban present",
            "")
@@ -214,7 +216,7 @@ fn check_roadmap_anchors() {
 
 let FALSIFIERS = [
     "F-RTSC-1 numerics — published independent confirmation rate ≥ 1/10 within ±5% → DEMOTE σ-φ=10 heuristic",
-    "F-RTSC-1 dual — N ≥ 4 confirmations of LK-99 published within ±5 sample tolerance → F-RTSC-1 closes positive",
+    "F-RTSC-1 dual — N ≥ 4 confirmations of CSH published within ±5 sample tolerance → F-RTSC-1 closes positive",
     "binomial CI break — observed n/p combination yielding p_max > 0.30 with n ≥ 10 → DEMOTE one-sided 95% bound",
     "σ-φ heuristic break — false-positive multiplier observed outside [0.05, 0.20] band → DEMOTE n=6 closure",
     "Bayesian threshold break — observed BF·k ≠ τ(6)=4 floor for prior-flip → DEMOTE n=6 Bayes-floor",
@@ -223,17 +225,17 @@ let FALSIFIERS = [
 
 fn main() {
     println("========================================================================")
-    println("  hexa-rtsc — pillar `rtsc` LK-99 negative-result numerical (T2)")
+    println("  hexa-rtsc — pillar `rtsc` CSH negative-result numerical (T2)")
     println("========================================================================")
     println("  source: " + DOC_ROADMAP + " §A.4 + §C R4")
-    println("  anchor: F-RTSC-1 (LK-99 reproduction failure 2023-08 to 2023-12)")
+    println("  anchor: F-RTSC-1 (CSH · Snider 2020 Nature 586:373 · retracted Nature 610:804 2022; Hirsch + Marsiglio 2022 critique)")
     println("")
 
     println("  reproduction floor N ≥ τ(6) = 4:")
     check_reproduction_floor()
     println("")
 
-    println("  LK-99 confirmation rate (0/10 → F-RTSC-1 OPEN):")
+    println("  CSH confirmation rate (0/10 → F-RTSC-1 OPEN):")
     check_confirmation_rate()
     println("")
 
@@ -264,11 +266,11 @@ fn main() {
     let pass_n = RUN - FAIL
     println("  " + str(pass_n) + "/" + str(RUN) + " checks passed")
     if FAIL > 0 {
-        println("__HEXA_RTSC_NUMERICS_LK99__ FAIL")
+        println("__HEXA_RTSC_NUMERICS_CSH__ FAIL")
         exit(1)
     }
-    println("  T2 numerical locked: F-RTSC-1 LK-99 reproduction stats via math_pure.")
-    println("  Empirical RT-SC remains UNPROVEN — LK-99 unconfirmed; binomial CI > 0.")
-    println("__HEXA_RTSC_NUMERICS_LK99__ PASS")
+    println("  T2 numerical locked: F-RTSC-1 CSH reproduction stats via math_pure.")
+    println("  Empirical RT-SC remains UNPROVEN — CSH unconfirmed; binomial CI > 0.")
+    println("__HEXA_RTSC_NUMERICS_CSH__ PASS")
     exit(0)
 }

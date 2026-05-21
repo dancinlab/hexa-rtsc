@@ -93,10 +93,10 @@ let NUMERICS_SCRIPTS: [str] = [
     "numerics_hc2_48t.hexa",
     "numerics_hc2_48t_parity.hexa",
     "numerics_hc2_48t_solver.hexa",
-    "numerics_lk99.hexa",
-    "numerics_lk99_parity.hexa",
-    "numerics_lk99_solver.hexa",
-    "numerics_lk99_dft.hexa",
+    "numerics_csh.hexa",
+    "numerics_csh_parity.hexa",
+    "numerics_csh_solver.hexa",
+    "numerics_csh_dft.hexa",
     "numerics_tdgl_vortex.hexa",
     "numerics_whh_full.hexa",
     "numerics_lattice_arithmetic.hexa",
@@ -106,7 +106,7 @@ let NUMERICS_SCRIPTS: [str] = [
 // ─── falsifier mapping (anchors lint into preregister surface) ──────────
 
 let FALSIFIERS: [str] = [
-    "F-RTSC-1: numerics_lk99 + numerics_lk99_parity must satisfy invariants (1)-(5)",
+    "F-RTSC-1: numerics_csh + numerics_csh_parity must satisfy invariants (1)-(5)",
     "F-RTSC-2: numerics_mcmillan + numerics_mcmillan_parity must satisfy invariants (1)-(5)",
     "F-RTSC-3: numerics_hc2_48t + numerics_hc2_48t_parity must satisfy invariants (1)-(5)",
     "F-SC-1/2/3: numerics_bcs + numerics_bcs_parity must satisfy invariants (1)-(5)",

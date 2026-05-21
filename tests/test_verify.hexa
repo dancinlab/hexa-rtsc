@@ -6,7 +6,7 @@
 //   - T1 algebra ×6     : lattice + cross_doc + 4×calc_*
 //   - T2 numerics ×10   : 4×numerics_* + 4×_parity + lattice_arithmetic + cross_pillar
 //   - T2-solver ×4      : 4×numerics_*_solver
-//   - T2-extended ×3    : numerics_lk99_dft + tdgl_vortex + whh_full
+//   - T2-extended ×3    : numerics_csh_dft + tdgl_vortex + whh_full
 //   - T3 archival ×6    : 6×empirical_*_arxiv
 //   - meta ×3           : falsifier_check + lint_numerics + saturation_check
 //   - sim-firmware ×4   : firmware/sim/{synthesis,quench,calorimetry,squid}

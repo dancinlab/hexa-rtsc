@@ -7,7 +7,7 @@
 // 3 sister deps simultaneously". Strongest hardware-free anchor is the
 // **arXiv corpus** (cond-mat.supr-con / physics.acc-ph).
 //
-// PASS / SKIP / FAIL semantics identical to empirical_lk99_arxiv.hexa.
+// PASS / SKIP / FAIL semantics identical to empirical_csh_arxiv.hexa.
 //
 // Tier: F-RTSC-3 T3. Strict raw-data fit (sustained 48 T SC coil at
 // 4.2 K + downstream ack from 3 sisters) → Stage-1+ TBD.

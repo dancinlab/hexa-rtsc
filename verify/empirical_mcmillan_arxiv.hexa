@@ -9,7 +9,7 @@
 //
 // Policy: API-first, fixture-fallback, both compared when available.
 //
-// PASS / SKIP / FAIL semantics identical to empirical_lk99_arxiv.hexa.
+// PASS / SKIP / FAIL semantics identical to empirical_csh_arxiv.hexa.
 //
 // Tier: F-RTSC-2 T3 (literature-existence empirical anchor). Strict
 // raw-data fit (high-Tc bench measurement vs Allen-Dynes) → Stage-1+ TBD.

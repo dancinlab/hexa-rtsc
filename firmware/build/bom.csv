@@ -15,7 +15,7 @@
 #   note          — additional context
 
 bench,item,spec,vendor,pn,unit_cost_usd,qty,subtotal_usd,lead_weeks,note
-synthesis,High-pressure cell,5-20 GPa Belt apparatus,Almax Easylab,BX90,180000,1,180000,16,claim-only RT-SC (anonymized 2026-05-22 from a specific historical claim) + hydride synthesis
+synthesis,High-pressure cell,5-20 GPa Belt apparatus,Almax Easylab,BX90,180000,1,180000,16,CSH-class + hydride synthesis
 synthesis,Tube furnace,RT-1500 C 60mm bore,Carbolite Gero,STF15/180,12000,1,12000,8,925C heat treatment
 synthesis,Vacuum + Ar,1e-6 mbar + 5N Ar,Pfeiffer + Praxair,HiCube80,28000,1,28000,4,inert atmosphere
 synthesis,Glovebox,<0.1 ppm O2/H2O,MBraun,UNILAB Pro,65000,1,65000,12,air-sensitive precursors
@@ -27,7 +27,7 @@ synthesis,Optical + Raman,532nm 1um spot,Renishaw,inVia,220000,1,220000,12,grain
 synthesis,EBSD detector (opt),OIM 8 EDAX,EDAX,TSL OIM 8,250000,1,250000,12,crystallographic orientation
 synthesis,Sample loading port,UHV Pb-shielded,custom,N/A,8000,1,8000,4,radiation-safe transfer
 synthesis,DI water + N2 skid,2 L/min DI 200 L/min N2,Millipore + Praxair,N/A,6000,1,6000,2,post-synthesis cleaning
-synthesis,Pb dust extractor,HEPA H14 chimney,Camfil,Megalam,14000,1,14000,4,Pb apatite dust hazard
+synthesis,Pb dust extractor,HEPA H14 chimney,Camfil,Megalam,14000,1,14000,4,Pb carbonaceous-sulfur-hydride dust hazard
 synthesis,H2S monitor,0.1-100 ppm 4-wire,RKI,03 Series,3000,2,6000,2,redundant safety
 hc2-coil,REBCO tape,4mm wide 100m Ic>600A,SuperPower,SCS4050,220000,1,220000,32,n=6 anchor 4mm = tau(6)
 hc2-coil,Inner mandrel,C-C composite 40mm bore,TPI Composites,N/A,18000,1,18000,8,sigma-phi=10mm clearance
