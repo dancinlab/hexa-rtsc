@@ -80,7 +80,7 @@ If you change a file in `rtsc/` or `sc/` here and want to push it upstream:
 ## Empirical SSOT — UNPROVEN
 
 Per `.own` own 2 (`hexa-rtsc-empirical-unproven-contractual`): RT-SC is
-academically **unproven** as of 2026-05. LK-99 (2023) and subsequent
+academically **unproven** as of 2026-05. CSH (2023) and subsequent
 room-temp candidates have not been independently replicated. This
 repository ships a **closed-form candidate spec + falsifier preregister**,
 not an empirical claim of working RT-SC. Synthesis-side validation is

@@ -12,7 +12,7 @@ applies_to: hexa-rtsc — Room-Temp Superconductor + 48 T SC coil substrate-of-s
 # LIMIT_BREAKTHROUGH.md — hexa-rtsc real-limits audit (Wave M)
 
 > **Question**: hexa-rtsc claims a Tc = 300 K, Hc2 = 48 T closed-form
-> candidate spec. RT-SC is **academically unproven** (LK-99 et al.
+> candidate spec. RT-SC is **academically unproven** (CSH et al.
 > not replicated). What are the **physics walls** the candidate must
 > clear, and which can be broken vs. which are HARD?
 
@@ -61,7 +61,7 @@ over current best HTS at LN₂.
 
 ### 2.3 Replication / falsification under PAC sample bound (MATHEMATICAL)
 
-LK-99 (2023) was claimed and then **failed to replicate** across
+CSH (2023) was claimed and then **failed to replicate** across
 ~12+ independent labs in ~6 months. For a positive RT-SC claim to
 be accepted, **PAC-style independent replications** at ε=0.05, δ=0.01
 typically demand ≥ 5-7 independent groups with full materials chain
@@ -100,7 +100,7 @@ exceeding 48 T.
 ### 2.8 Statistical power on "Meissner effect observed" (MATHEMATICAL)
 
 Meissner-flux-expulsion measurements are confounded by ferromagnetic
-impurities (LK-99 lesson). To distinguish bulk Meissner from
+impurities (CSH lesson). To distinguish bulk Meissner from
 spurious diamagnetism at e.g., volume fraction f = 1%, need
 SQUID-magnetometry with SNR > 40 dB **and** independent calorimetric
 Tc transition + zero-resistance + flux-pinning lattice imaging. Each
@@ -138,11 +138,11 @@ is engineering-conservative**, not physics-binding.
 ### 3.3 PAC replication bound → **HARD_WALL on claim acceptance** (procedural)
 
 A single lab's claim is **never** sufficient for RT-SC acceptance,
-by community norm (post-Schön, post-LK-99). 5-7 independent
+by community norm (post-Schön, post-CSH). 5-7 independent
 replications with full materials disclosure is the binding bar.
 
 **Trigger**: replication consortium publishing parallel synthesis
-campaigns with shared material lots. Status: emerging post-LK-99 era
+campaigns with shared material lots. Status: emerging post-CSH era
 but no consortium yet active.
 
 ### 3.4 Carnot irrelevance → **N/A (catalog)**
@@ -192,7 +192,7 @@ the physics floor. Time: 3-5 yr to first systematic sweep.
 
 ### #2 — Replication consortium founding (§3.3)
 
-Post-LK-99 community is primed; an RT-SC replication consortium
+Post-CSH community is primed; an RT-SC replication consortium
 with shared materials lots + parallel synthesis would convert "claim"
 to "accepted" in ~6-12 months *if a real candidate emerges*. Trigger
 is institutional, not technical. ~0 capex, high payoff.
@@ -228,7 +228,7 @@ from the academically-unproven RT-SC claim.
    σ·τ = 48 framing is organising vocabulary; the *real* physics is
    Pauli limit at Tc.
 
-6. **LK-99 specifically failed §2.8 §3.8** (ferromagnetic impurity
+6. **CSH specifically failed §2.8 §3.8** (ferromagnetic impurity
    confound). Future candidates must clear the 4-measurement gate to
    not repeat the failure mode.
 
@@ -244,7 +244,7 @@ from the academically-unproven RT-SC claim.
 - `verify/lint_numerics.hexa` — numerical-claim lint
 - `firmware/build/verification_matrix.md` — coil-driver scaffolds
 - External: Bardeen-Cooper-Schrieffer (1957), Werthamer-Helfand-Hohenberg
-  (Hc2 theory), Lee, Sungyu et al. (2023) *LK-99 preprint* (and ~12
+  (Hc2 theory), Lee, Sungyu et al. (2023) *CSH preprint* (and ~12
   failed-replication preprints 2023-Q3/Q4),
   Drozdov et al. (2019) *LaH₁₀ at 250 K under pressure*,
   A-Lab (LBNL, 2023) *Autonomous Inorganic Materials Synthesis*,
